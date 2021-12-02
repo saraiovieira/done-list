@@ -4,7 +4,7 @@ config();
 
 const { MONGO_URI } = process.env;
 
-export function connect() {
+export const connect = () => {
   // Connecting to the database
   mongoose
   .connect(MONGO_URI, {
