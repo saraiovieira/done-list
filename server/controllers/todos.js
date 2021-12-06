@@ -4,7 +4,7 @@ function success(res, payload) {
     return res.status(200).json(payload)
 }
 
-export const todoCreate = async (req,res, next) => {
+export const createTodo = async (req,res, next) => {
     try {
         const todo = await TodoTask.create(req.body)
         return success(res, todo)
@@ -13,7 +13,7 @@ export const todoCreate = async (req,res, next) => {
     }
 }
 
-export const todos = async (req,res, next) => {
+export const getTodos = async (req,res, next) => {
     try {
         const todos = await TodoTask.find({})
         return success(res, todos)
@@ -22,7 +22,7 @@ export const todos = async (req,res, next) => {
       }
 }
 
-export const todoUpdate = async (req, res, next) => {
+export const updateTodo = async (req, res, next) => {
     try {
       const todo = await TodoTask.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -33,7 +33,7 @@ export const todoUpdate = async (req, res, next) => {
     }
 }
 
-export const todoDelete = async (req, res, next) => {
+export const deleteTodo = async (req, res, next) => {
     try {
       await TodoTask.findByIdAndRemove(req.params.id)
       return success(res, "todo deleted!")
