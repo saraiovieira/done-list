@@ -3,6 +3,8 @@
 /.pnp
 .pnp.js
 
+.eslintcache
+
 # logs
 logs
 *.log
