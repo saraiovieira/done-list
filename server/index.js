@@ -9,7 +9,7 @@ const { API_PORT } = process.env;
 const port = process.env.PORT || API_PORT;
 const app = express();
 
-
+app.use(cors())
 app.use(express.json());
 app.use('/', routes);
 
