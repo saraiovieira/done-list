@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ToDo = (todo, setTodo) => {      
+const ToDo = ({ todo, setTodo }) => {      
     return (
         <>
             <input
