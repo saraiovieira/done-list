@@ -1,5 +1,6 @@
 import express from 'express';
 import routes  from './routes/web.js';
+import cors from 'cors'
 import { config } from 'dotenv';
 import { connect } from './config/database.js';
 config();
@@ -15,4 +16,4 @@ app.use('/', routes);
 
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
-  });
+});
