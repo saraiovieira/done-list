@@ -4,23 +4,27 @@ const ToDos = ({ todos, updateTodo, deleteTodo }) => {
 
     return (
         <> 
-            <ul>
-                {todos.map(({ _id, task, completed }, i) => (
+             <ul>
+                {todos.map(({ _id, task}, i) => (
                     <li
-                    key={i}
-                    onClick={e => updateTodo(e, _id)}
-                    className={completed ? "completed" : ""}
+                        key={i}
                     >
-                    {task} 
-                    <input
-                        id="todo-0" 
+                    {task}
+                    <input 
+                        id="todo" 
                         type="checkbox" 
-                        defaultChecked={false}
+                        defaultChecked={false} 
                         onClick={e => deleteTodo(e, _id)}
                     />
+                    <button 
+                        type="button"
+                        onClick={e => updateTodo(e, _id)}
+                    >
+                        Edit
+                    </button>
                     </li>
                 ))}
-        </ul>
+            </ul>
         </>
     )
 }
