@@ -24,4 +24,4 @@ async function getAllTodosAPI() {
   return todos
 }
 
-export { createTodo, deleteTodo, updateTodo, getAllTodos}
+export { createTodoAPI, deleteTodoAPI, updateTodoAPI, getAllTodosAPI}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import APIHelper from './APIHelper';
+import { createTodoAPI, deleteTodoAPI, updateTodoAPI, getAllTodosAPI } from './APIHelper';
 import Button from './components/Button';
 import Header from './components/Header';
 import ToDo from './components/ToDo';
@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     const fetchTodoAndSetTodos = async () => {
-      const todos = await APIHelper.getAllTodos()
+      const todos = await getAllTodosAPI()
       setTodos(todos)
     }
     fetchTodoAndSetTodos()
@@ -29,25 +29,25 @@ function App() {
       alert(`Task: ${todo} already exists`)
       return
     }
-    const newTodo = await APIHelper.createTodo(todo) // create the todo
+    const newTodo = await createTodoAPI(todo) // create the todo
     setTodos([...todos, newTodo]) // adding the newTodo to the list
   }
 
   const deleteTodo = async (e, id) => {
     try {
       e.stopPropagation()
-      await APIHelper.deleteTodo(id)
+      await deleteTodoAPI(id)
       setTodos(todos.filter(({ _id: i }) => id !== i))
     } catch (err) {}
   }
 
   const updateTodo = async (e, id) => {
     e.stopPropagation()
-    const payload = {
+    const newTodo = {
       completed: !todos.find(todo => todo._id === id).completed,
     }
-    const updatedTodo = await APIHelper.updateTodo(id, payload)
-    setTodos(todos.map(todo => (todo._id === id ? updatedTodo : todo)))
+    const updatedTodo = await updateTodoAPI(id, newTodo)
+        setTodos(todos.map(todo => (todo._id === id ? updatedTodo : todo)))
   }
 
   return (
