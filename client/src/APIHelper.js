@@ -1,27 +1,27 @@
-import axios from "axios"
+import axios from "axios";
 
-const API_URL = "http://localhost:3000/todos/"
+const API_URL = "http://localhost:5000/todos/"
 
-async function createTodo(task) {
+async function createTodoAPI(task) {
   const { data: newTodo } = await axios.post(API_URL, {
     task,
   })
   return newTodo
 }
 
-async function deleteTodo(id) {
+async function deleteTodoAPI(id) {
   const message = await axios.delete(`${API_URL}${id}`)
   return message
 }
 
-async function updateTodo(id, payload) {
+async function updateTodoAPI(id, payload) {
   const { data: newTodo } = await axios.put(`${API_URL}${id}`, payload)
   return newTodo
 }
 
-async function getAllTodos() {
+async function getAllTodosAPI() {
   const { data: todos } = await axios.get(API_URL)
   return todos
 }
 
-export default { createTodo, deleteTodo, updateTodo, getAllTodos }
+export { createTodo, deleteTodo, updateTodo, getAllTodos}
