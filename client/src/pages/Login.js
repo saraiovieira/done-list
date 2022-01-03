@@ -19,7 +19,9 @@ const Login = () => {
                 await axios.post("http://localhost:5000/login/", {
                     email: email,
                     password: password
-                })
+                }).then((res) => {
+                    document.cookie = "token=" + res.data.token
+                });
                 navigate('/todolist');
             } catch (err) {
                 console.log(err);

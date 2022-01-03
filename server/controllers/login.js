@@ -21,13 +21,15 @@ export const login = async (req, res) => {
         { user_id: user._id, email },
         process.env.TOKEN_KEY,
         {
-          expiresIn: "2h",
+          expiresIn: "1h",
         }
       );
       // save user token
       user.token = token;
        // user
-      res.status(200).json(token);
+      res.cookie("token", token, {httpOnly: true, secure: true});
+
+      res.json({ token })
     }
     else{
         res.status(400).send("Invalid Credentials");
