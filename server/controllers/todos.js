@@ -1,4 +1,5 @@
-import { TodoTask } from '../models/TodoTask.js';
+import { TodoTask } from '../models/user.js';
+import { User } from '../models/user.js';
 
 function success(res, payload) {
     return res.status(200).json(payload)
@@ -6,7 +7,11 @@ function success(res, payload) {
 
 export const createTodo = async (req,res) => {
   try {
-    const todo = await TodoTask.create(req.body)
+    const todo = await TodoTask.create({
+      user_id: req.user.user_id,
+      task: req.body.task,
+      completed: req.body.completed,
+    });
     return success(res, todo)
   } catch (err) {
     console.log(err)
@@ -15,7 +20,7 @@ export const createTodo = async (req,res) => {
 
 export const getTodos = async (req,res) => {
   try {
-    const todos = await TodoTask.find({})
+    const todos = await TodoTask.find({ user_id: req.user.user_id })
     return success(res, todos)
   } catch (err) {
     console.log(err)
@@ -24,8 +29,8 @@ export const getTodos = async (req,res) => {
 
 export const updateTodo = async (req, res) => {
   try {
-    const todo = await TodoTask.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
+    const todo = await TodoTask.findOneAndUpdate( {_id: req.params.id, user_id: req.user.user_id }, req.body, {
+    new: true
   })
     return success(res, todo)
   } catch (err) {
@@ -35,7 +40,7 @@ export const updateTodo = async (req, res) => {
 
 export const deleteTodo = async (req, res) => {
   try {
-    await TodoTask.findByIdAndRemove(req.params.id)
+    await TodoTask.findByIdAndRemove({_id: req.params.id, user_id: req.user.user_id })
     return success(res, "todo deleted!")
   } catch (err) {
     console.log(err)
