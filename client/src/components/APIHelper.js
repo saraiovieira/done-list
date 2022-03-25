@@ -1,29 +1,33 @@
 import axios from "axios";
-import { getCookie } from "../functions/cookie";
 
 const API_URL = "http://localhost:5000/todos/";
 
-let config = { headers: {Authorization : `Bearer ${getCookie("token")}`}}
+function getConfig(){
+  let config = {
+    headers: {
+      Authorization : `Bearer ${localStorage.getItem("token")}`
+    }
+  }
+  return config;
+}
 
 async function createTodoAPI(task) {
-  const { data: newTodo } = await axios.post(API_URL, {
-    task
-  }, config)
+  const { data: newTodo } = await axios.post(API_URL, {task}, getConfig())
   return newTodo
 }
 
 async function deleteTodoAPI(id) {
-  const message = await axios.delete(`${API_URL}${id}`, config)
+  const message = await axios.delete(`${API_URL}${id}`, getConfig())
   return message
 }
 
 async function updateTodoAPI(id, payload) {
-  const { data: newTodo } = await axios.put(`${API_URL}${id}`, payload,config)
+  const { data: newTodo } = await axios.put(`${API_URL}${id}`, payload,getConfig())
   return newTodo
 }
 
 async function getAllTodosAPI() {
-  const { data: todos } = await axios.get(API_URL, config)
+  const { data: todos } = await axios.get(API_URL, getConfig())
   return todos
 }
 
