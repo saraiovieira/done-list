@@ -3,15 +3,8 @@ import { Outlet, Navigate } from 'react-router-dom';
 
 
 const PrivateRoute = () => {
-    const result = document.cookie;
-    let isLogged = true;
-
-    if (result) {
-        isLogged = true
-    }else {
-    isLogged = false
-    }
-  
+    const token = localStorage.getItem("token");
+    let isLogged = (token == null) ? false : true;
     return isLogged ? <Outlet/> : <Navigate to="/" />;
 }
 
