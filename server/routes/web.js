@@ -1,12 +1,12 @@
 import express from 'express';
 import { login } from '../controllers/login.js';
-import { register } from '../controllers/register.js';
+import { validate, register } from '../controllers/register.js';
 import { verifyToken } from '../middleware/auth.js';
 import { createTodo, getTodos, updateTodo, deleteTodo } from '../controllers/todos.js'
 
 const router = express.Router();
 
-router.post("/register", register);
+router.post("/register", validate('register'), register);
 
 router.post("/login", login);
 
