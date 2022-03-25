@@ -1,5 +1,4 @@
-import { TodoTask } from '../models/user.js';
-import { User } from '../models/user.js';
+import { TodoTask } from '../models/TodoTask.js';
 
 function success(res, payload) {
     return res.status(200).json(payload)
