@@ -11,27 +11,23 @@ const TodoList = () => {
     const [todos, setTodos] = useState([])
 
     useEffect(() => {
-        const fetchTodoAndSetTodos = async () => {
-        const todos = await getAllTodosAPI()
-        setTodos(todos)
-        }
-        fetchTodoAndSetTodos()
+
+        getAllTodosAPI().then((todos) => {
+            setTodos(todos)
+        });
+
     }, [])
 
     const createTodo = async e => {
         e.preventDefault()
+        
         if (!todo) {
-        // check if the todo is empty
-        alert("please enter something")
-        return
+            return
         }
-        if (todos.some(({ task }) => task === todo)) {
-        // check if the todo already exists
-        alert(`Task: ${todo} already exists`)
-        return
-        }
-        const newTodo = await createTodoAPI(todo) // create the todo
-        setTodos([...todos, newTodo]) // adding the newTodo to the list
+
+        const newTodo = await createTodoAPI(todo) 
+        setTodos([...todos, newTodo])
+        setTodo('')
     }
 
     const deleteTodo = async (e, id) => {
