@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
 
 const todoTaskSchema = new mongoose.Schema({
+    user_id: {
+      type: String,
+      required: false,
+    },
     task: {
         type: String,
-        unique: true,
+        unique: false,
         required: true,
     },
     completed: {
@@ -12,5 +16,5 @@ const todoTaskSchema = new mongoose.Schema({
         required: false,
     },
 })
-
+  
 export const TodoTask = mongoose.model("TodoTask", todoTaskSchema);
