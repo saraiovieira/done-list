@@ -12,14 +12,16 @@ const Register = () => {
     const handleRegister = async e => {
         e.preventDefault();
         if (!email || !password) {
-            setErrorMessage('You forgot to enter your email or password!!');
+            setErrorMessage('Email and password are required');
         } else {
             try {
                 await axios.post("http://localhost:5000/register/", {
                     email: email,
                     password: password
-                })
-                navigate('/login');
+                }).then((res) => {
+                    localStorage.setItem("token", res.data.token); 
+                    navigate('/todolist');
+                });
             } catch(err) {
                 console.log(err);
                 setErrorMessage('User already exists');

@@ -13,16 +13,16 @@ const Login = () => {
     const handleLogin = async e => {
         e.preventDefault();
         if (!email || !password) {
-            setErrorMessage('You forgot to enter your email or password!!');
+            setErrorMessage('Email and Password are required');
         } else {
             try {
                 await axios.post("http://localhost:5000/login/", {
                     email: email,
                     password: password
                 }).then((res) => {
-                    document.cookie = "token=" + res.data.token
+                    localStorage.setItem("token", res.data.token); 
+                    navigate('/todolist');
                 });
-                navigate('/todolist');
             } catch (err) {
                 console.log(err);
                 setErrorMessage('Invalid Credentials');
