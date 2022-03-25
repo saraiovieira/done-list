@@ -27,8 +27,6 @@ export const login = async (req, res) => {
       // save user token
       user.token = token;
        // user
-      res.cookie("token", token, {httpOnly: true, secure: true});
-
       res.json({ token })
     }
     else{
