@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import { createTodoAPI, deleteTodoAPI, updateTodoAPI, getAllTodosAPI } from '../components/APIHelper';
-import Button from '../components/Button';
-import ToDo from '../components/ToDo';
+import NewTask from '../components/NewTask';
 import ToDos from '../components/ToDos';
 
-const TodoList = () => {
+const DoneList = () => {
 
     const [todo, setTodo] = useState("")
     const [todos, setTodos] = useState([])
@@ -48,12 +47,11 @@ const TodoList = () => {
     }
     return (
         <>
-            <ToDo todo={todo} setTodo={setTodo}/>
-            <Button createTodo={createTodo}/>
+            <NewTask todo={todo} setTodo={setTodo} createTodo={createTodo} />
             <ToDos todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo}
             />
         </>
     )
 }
 
-export default TodoList
+export default DoneList
