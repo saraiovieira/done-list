@@ -21,7 +21,7 @@ const Login = () => {
                     password: password
                 }).then((res) => {
                     localStorage.setItem("token", res.data.token); 
-                    navigate('/todolist');
+                    navigate('/donelist');
                 });
             } catch (err) {
                 console.log(err);
