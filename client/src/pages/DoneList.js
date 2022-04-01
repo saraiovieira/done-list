@@ -48,8 +48,7 @@ const DoneList = () => {
     return (
         <>
             <NewTask todo={todo} setTodo={setTodo} createTodo={createTodo} />
-            <ToDos todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo}
-            />
+            <ToDos todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo}/>
         </>
     )
 }
