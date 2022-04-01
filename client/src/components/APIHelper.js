@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios from "axios"
 
-const API_URL = "http://localhost:5000/todos/";
+const apiPort = process.env.REACT_APP_API_PORT
+const API_URL = `http://localhost:${apiPort}/todos/`;
 
 function getConfig(){
   let config = {
