@@ -17,8 +17,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={[<MainHeader />, <Home />]} />
-        <Route path="/login" element={[<MainHeader />, <Login />]} />
-        <Route path="/register" element={[<MainHeader />, <Register />]} />
         <Route element={<PrivateRoute />}>
           <Route path="/donelist" element={[<DoneHeader />, <DoneList />]}/>
         </Route>
