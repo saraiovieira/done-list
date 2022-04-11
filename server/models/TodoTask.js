@@ -15,6 +15,10 @@ const todoTaskSchema = new mongoose.Schema({
         default: true,
         required: false,
     },
+    createdAt: {
+        type: Date,
+        required: true,
+    }
 })
   
 export const TodoTask = mongoose.model("TodoTask", todoTaskSchema);
