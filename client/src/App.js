@@ -3,8 +3,6 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import MainHeader from './components/MainHeader';
 import DoneHeader from './components/DoneHeader';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
 import PrivateRoute from './pages/PrivateRoute';
 import DoneList from './pages/DoneList';
 import NotFound from './pages/NotFound';
