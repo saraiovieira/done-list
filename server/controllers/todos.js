@@ -10,6 +10,7 @@ export const createTodo = async (req,res) => {
       user_id: req.user.user_id,
       task: req.body.task,
       completed: req.body.completed,
+      createdAt: Date.now(),
     });
     return success(res, todo)
   } catch (err) {
