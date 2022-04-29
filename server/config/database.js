@@ -1,14 +1,13 @@
-import mongoose from 'mongoose';
-import { config } from 'dotenv';
+import mongoose from "mongoose";
+import { config } from "dotenv";
 config();
 
 const { MONGO_URI } = process.env;
 
 export const connect = () => {
-  // Connecting to the database
   mongoose
-  .set("debug", true)
-  .connect(MONGO_URI, {
+    .set("debug", true)
+    .connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

@@ -1,19 +1,20 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 const config = process.env;
 
-
-function getToken (req) {
-  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-      return req.headers.authorization.split(' ')[1];
+function getToken(req) {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.split(" ")[0] === "Bearer"
+  ) {
+    return req.headers.authorization.split(" ")[1];
   } else if (req.query && req.query.token) {
-      return req.query.token;
+    return req.query.token;
   }
   return null;
 }
 
 export const verifyToken = (req, res, next) => {
-  
   const token = getToken(req);
 
   if (!token) {
