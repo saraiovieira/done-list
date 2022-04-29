@@ -4,13 +4,17 @@ function success(res, payload) {
     return res.status(200).json(payload)
 }
 
+function TimestampToDate(timestamp){
+  return new Date(parseInt(timestamp)).toLocaleDateString(); 
+}
+
 export const createTodo = async (req,res) => {
   try {
     const todo = await TodoTask.create({
       user_id: req.user.user_id,
       task: req.body.task,
       completed: req.body.completed,
-      createdAt: Date.now(),
+      createdAt: TimestampToDate(req.body.date),
     });
     return success(res, todo)
   } catch (err) {
@@ -20,7 +24,7 @@ export const createTodo = async (req,res) => {
 
 export const getTodos = async (req,res) => {
   try {
-    const todos = await TodoTask.find({ user_id: req.user.user_id })
+    const todos = await TodoTask.find({ user_id: req.user.user_id,  createdAt: TimestampToDate(req.query.date)})
     return success(res, todos)
   } catch (err) {
     console.log(err)
