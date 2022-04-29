@@ -10,8 +10,7 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
     const editTodo = (e) => {
         e.preventDefault();
         setEdit(true);
-    };
-    //e => updateTodo(e, _id)
+    }
 
     return (
         <>
