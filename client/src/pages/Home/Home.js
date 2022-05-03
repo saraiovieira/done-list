@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
+import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import { validEmail, validPassword } from "../Validation/Validation.js";
+import { validEmail, validPassword } from "../../Validation/Validation.js";
 
 const Home = () => {
   let navigate = useNavigate();
@@ -92,42 +93,50 @@ const Home = () => {
 
   return (
     <>
-      <p>
-        This is the place where you write down all of the things that you’ve
-        already done
-      </p>
-      <p>
-        Every time you log in, you will feel accomplished, grateful, productive
-        and encourage to do more!{" "}
-      </p>
-      <p>Ready to start accomplishing? </p>
-      <input
-        type="text"
-        name="Email"
-        id="email"
-        value={email}
-        onChange={({ target }) => setEmail(target.value)}
-        placeholder="Enter your email"
-        aria-label="email"
-      />
-      {emailError && <p className="error">{emailError}</p>}
-      <input
-        type="password"
-        name="Password"
-        id="password"
-        value={password}
-        onChange={({ target }) => setPassword(target.value)}
-        placeholder="Enter your password"
-        aria-label="password"
-      />
-      {passwordError && <p className="error">{passwordError}</p>}
-      <button type="button" onClick={handleLogin}>
-        Login
-      </button>
-      <button type="button" onClick={handleRegister}>
-        Register
-      </button>
-      {errorMessage && <p className="error">{errorMessage}</p>}
+      <article>
+        <p id="p-1">
+          This is the place where you write down <pre></pre> all of the things
+          that you’ve already done.
+        </p>
+        <p id="1">
+          Every time you log in, you will feel<pre></pre> accomplished, grateful,
+          productive and encourage to do more!
+        </p>
+      </article>
+      <div id="form-section">
+        <p id="acc">Ready to start accomplishing? </p>
+        <form>
+          <label for="email">Email</label>
+          <input
+            type="text"
+            name="Email"
+            id="email"
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
+          />
+          {emailError && <p className="error">{emailError}</p>}
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="Password"
+            id="password"
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+            placeholder="Enter your password"
+            aria-label="password"
+          />
+          {passwordError && <p className="error">{passwordError}</p>}
+          <div id="btn">
+            <button type="button" onClick={handleLogin}>
+              Login
+            </button>
+            <button type="button" onClick={handleRegister}>
+              Signup
+            </button>
+          </div>
+          {errorMessage && <p className="error">{errorMessage}</p>}
+        </form>
+      </div>
     </>
   );
 };

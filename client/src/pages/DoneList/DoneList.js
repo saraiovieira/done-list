@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
+import "./DoneList.css";
 import {
   createTodoAPI,
   deleteTodoAPI,
   updateTodoAPI,
   getAllTodosAPI,
-} from "../Helpers/APIHelper.js";
-import ToDos from "../Components/ToDos";
-import CalendarDate from "../Components/Calendar";
+} from "../../Helpers/APIHelper.js";
+import ToDos from "../../Components/ToDos";
+import CalendarDate from "../../Components/CalendarDate";
 
 const DoneList = () => {
   const [todo, setTodo] = useState("");
@@ -22,6 +22,11 @@ const DoneList = () => {
     getAllTodosAPI(date).then((todos) => {
       setTodos(todos);
     });
+  };
+
+  const dateChanged= (date) => {
+  getAllTodos(date);
+  setDate(date);
   };
 
   const createTodo = async (e) => {
@@ -64,10 +69,7 @@ const DoneList = () => {
         deleteTodo={deleteTodo}
       />
       <CalendarDate
-        dateChanged={(date) => {
-          getAllTodos(date);
-          setDate(date);
-        }}
+      dateChanged={dateChanged}
       />
     </>
   );
