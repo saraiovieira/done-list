@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import { validEmail, validPassword } from "../../Validation/Validation.js";
+import { validEmail, validPassword } from "../../Validation/Validation";
 
 const Home = () => {
   let navigate = useNavigate();
@@ -93,21 +93,24 @@ const Home = () => {
 
   return (
     <>
-      <article>
-        <p id="p-1">
-          This is the place where you write down <pre></pre> all of the things
-          that you’ve already done.
+      <article className="home__article">
+        <p className="home_paragraph-first">
+          This is the place where you write down <br /> all of the things that
+          you’ve already done.
         </p>
-        <p id="1">
-          Every time you log in, you will feel<pre></pre> accomplished, grateful,
+        <p className="home_paragraph">
+          Every time you log in, you will feel <br /> accomplished, grateful,
           productive and encourage to do more!
         </p>
       </article>
-      <div id="form-section">
-        <p id="acc">Ready to start accomplishing? </p>
-        <form>
-          <label for="email">Email</label>
+      <div className="home__form-section">
+        <p className="home__paragraph-form">Ready to start accomplishing? </p>
+        <form className="home__form">
+          <label className="home__label" htmlFor="email">
+            Email
+          </label>
           <input
+            className="home__input"
             type="text"
             name="Email"
             id="email"
@@ -115,8 +118,11 @@ const Home = () => {
             onChange={({ target }) => setEmail(target.value)}
           />
           {emailError && <p className="error">{emailError}</p>}
-          <label for="password">Password</label>
+          <label className="home__label" htmlFor="password">
+            Password
+          </label>
           <input
+            className="home__input"
             type="password"
             name="Password"
             id="password"
@@ -126,11 +132,19 @@ const Home = () => {
             aria-label="password"
           />
           {passwordError && <p className="error">{passwordError}</p>}
-          <div id="btn">
-            <button type="button" onClick={handleLogin}>
+          <div>
+            <button
+              className="home__button"
+              type="button"
+              onClick={handleLogin}
+            >
               Login
             </button>
-            <button type="button" onClick={handleRegister}>
+            <button
+              className="home__button"
+              type="button"
+              onClick={handleRegister}
+            >
               Signup
             </button>
           </div>

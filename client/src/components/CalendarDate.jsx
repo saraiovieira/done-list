@@ -7,7 +7,7 @@ const CalendarDate = ({ dateChanged }) => {
 
   useEffect(() => {
     dateChanged(date.getTime());
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date]);
 
   return (

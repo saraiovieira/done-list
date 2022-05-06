@@ -5,7 +5,7 @@ import {
   deleteTodoAPI,
   updateTodoAPI,
   getAllTodosAPI,
-} from "../../Helpers/APIHelper.js";
+} from "../../Helpers/APIHelper";
 import ToDos from "../../Components/ToDos";
 import CalendarDate from "../../Components/CalendarDate";
 
@@ -24,9 +24,9 @@ const DoneList = () => {
     });
   };
 
-  const dateChanged= (date) => {
-  getAllTodos(date);
-  setDate(date);
+  const dateChanged = (date) => {
+    getAllTodos(date);
+    setDate(date);
   };
 
   const createTodo = async (e) => {
@@ -68,9 +68,7 @@ const DoneList = () => {
         updateTodo={updateTodo}
         deleteTodo={deleteTodo}
       />
-      <CalendarDate
-      dateChanged={dateChanged}
-      />
+      <CalendarDate dateChanged={dateChanged} />
     </>
   );
 };

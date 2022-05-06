@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainHeader from "./Components/MainHeader";
 import DoneHeader from "./Components/DoneHeader";
-import Home from "./Pages/Home";
+import Home from "./Pages/Home/Home.jsx";
 import PrivateRoute from "./Pages/PrivateRoute";
-import DoneList from "./Pages/DoneList";
+import DoneList from "./Pages/DoneList/DoneList.jsx";
 import NotFound from "./Pages/NotFound";
 
 function App() {
