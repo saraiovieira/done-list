@@ -8,7 +8,7 @@
 }
 
 header,
-article {
+.home__article {
   background-color: #7bed8d;
 }
 
@@ -17,23 +17,22 @@ header {
   padding: 10px;
 }
 
-svg {
+.logo {
   width: 40px;
   height: 39px;
   padding-right: 5px;
 }
 
-#p-1 {
-  padding-bottom: 20px;
-  padding-top: 30px;
+.home_paragraph-first {
+  padding: 30px 20px 30px 30px;
 }
 
-p {
+.home_paragraph {
   padding: 10px 20px 30px 30px;
   text-align: justify;
 }
 
-#form-section {
+.home__form-section {
   display: flex;
   flex-direction: column;
   margin-top: 30px;
@@ -41,28 +40,28 @@ p {
   width: fit-content;
 }
 
-#acc {
+.home__paragraph-form {
   font-size: 1rem;
   font-weight: bold;
   padding: 0;
 }
 
-form {
+.home__form {
   display: flex;
   flex-direction: column;
 }
 
-label {
+.home__label {
   margin-bottom: 5px;
 }
 
-input {
+.home__input {
   width: 100%;
   margin-bottom: 10px;
   padding: 5px;
 }
 
-button {
+.home__button {
   margin-bottom: 10px;
   margin-right: 20px;
   background-color: #006212; /* Green */
