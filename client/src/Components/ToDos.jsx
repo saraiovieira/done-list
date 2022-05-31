@@ -14,25 +14,7 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
 
     return (
         <>
-            {editId === true ? (
-                <div>
-                    {todos.map(({ _id, task}) => (
-                            <form onSubmit={e => updateTodo(e, _id)}>
-                                <input
-                                    type="text"
-                                    id="new-todo-input"
-                                    value={newTask}
-                                    onChange={({ target }) => setNewTask(target.value)}
-                                    placeholder='Edit task name'
-                                />
-                                <button type="submit">
-                                    Update task
-                                </button>  
-                            </form>
-                    ))}
-                </div>
-            ) : (
-                <form onSubmit={createTodo}>
+            <form onSubmit={createTodo}>
                     <input
                         type="text"
                         id="new-todo-input"
@@ -45,7 +27,6 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
                         Add task
                     </button>  
                 </form>
-            )}
             <ul>
                 {todos.map(({ _id, task, completed}, i) => (
                     <li

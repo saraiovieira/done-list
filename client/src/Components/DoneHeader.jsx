@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../src/logo.svg";
 
-const Header = () => {
+const DoneHeader = () => {
   const logOut = () => {
     localStorage.clear();
     window.location.href = "/";
@@ -18,4 +18,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default DoneHeader;
