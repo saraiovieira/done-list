@@ -15,6 +15,12 @@ header,
 header {
   display: flex;
   padding: 10px;
+  align-items: center;
+  gap: 15px;
+}
+
+.home_logo {
+  width: 10%;
 }
 
 .logo {
@@ -32,12 +38,19 @@ header {
   text-align: justify;
 }
 
+.home__second-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .home__form-section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 30px;
-  margin-left: 40px;
-  width: fit-content;
+  width: 100%;
 }
 
 .home__paragraph-form {
@@ -72,4 +85,42 @@ header {
   text-decoration: none;
   font-size: 16px;
   border-radius: 8px;
+}
+
+.home__img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.home__img-container img {
+  width: 80%;
+}
+
+@media (min-width:641px) {
+  .home_logo {
+    width: 5%;
+  }
+}
+
+@media (min-width:961px)  {
+  .home__second-section {
+    flex-direction: row;
+  }
+
+  .home__form-section {
+    justify-content: baseline;
+    align-items: baseline;
+    margin-top: 30px;
+    margin-left: 40px;
+    width: fit-content;
+  }
+
+  .home__img-container {
+    justify-content: flex-end;
+  }
+
+  .home__img-container img {
+    width: 50%;
+    margin-top: -105px;
+  }
 }

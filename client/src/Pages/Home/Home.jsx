@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { validEmail, validPassword } from "../../Validation/Validation";
+import doneImage from "../../../src/done-image.png";
 
 const Home = () => {
   let navigate = useNavigate();
@@ -103,53 +104,58 @@ const Home = () => {
           productive and encourage to do more!
         </p>
       </article>
-      <div className="home__form-section">
-        <p className="home__paragraph-form">Ready to start accomplishing? </p>
-        <form className="home__form">
-          <label className="home__label" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="home__input"
-            type="text"
-            name="Email"
-            id="email"
-            value={email}
-            onChange={({ target }) => setEmail(target.value)}
-          />
-          {emailError && <p className="error">{emailError}</p>}
-          <label className="home__label" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="home__input"
-            type="password"
-            name="Password"
-            id="password"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-            placeholder="Enter your password"
-            aria-label="password"
-          />
-          {passwordError && <p className="error">{passwordError}</p>}
-          <div>
-            <button
-              className="home__button"
-              type="button"
-              onClick={handleLogin}
-            >
-              Login
-            </button>
-            <button
-              className="home__button"
-              type="button"
-              onClick={handleRegister}
-            >
-              Signup
-            </button>
-          </div>
-          {errorMessage && <p className="error">{errorMessage}</p>}
-        </form>
+      <div className="home__second-section">
+        <div className="home__form-section">
+          <p className="home__paragraph-form">Ready to start accomplishing? </p>
+          <form className="home__form">
+            <label className="home__label" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="home__input"
+              type="text"
+              name="Email"
+              id="email"
+              value={email}
+              onChange={({ target }) => setEmail(target.value)}
+            />
+            {emailError && <p className="error">{emailError}</p>}
+            <label className="home__label" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="home__input"
+              type="password"
+              name="Password"
+              id="password"
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
+              placeholder="Enter your password"
+              aria-label="password"
+            />
+            {passwordError && <p className="error">{passwordError}</p>}
+            <div>
+              <button
+                className="home__button"
+                type="button"
+                onClick={handleLogin}
+              >
+                Login
+              </button>
+              <button
+                className="home__button"
+                type="button"
+                onClick={handleRegister}
+              >
+                Signup
+              </button>
+            </div>
+            {errorMessage && <p className="error">{errorMessage}</p>}
+          </form>
+        </div>
+        <div className="home__img-container">
+          <img src={doneImage} alt="Woman who is happy to have finished a task and is sitting in front of a desk with her laptop open" />
+        </div>
       </div>
     </>
   );
