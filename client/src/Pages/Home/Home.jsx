@@ -101,12 +101,12 @@ const Home = () => {
         </p>
         <p className="home_paragraph">
           Every time you log in, you will feel <br /> accomplished, grateful,
-          productive and encourage to do more!
+          productive and encouraged to do more!
         </p>
       </article>
       <div className="home__second-section">
         <div className="home__form-section">
-          <p className="home__paragraph-form">Ready to start accomplishing? </p>
+          <p className="home__form-title">Ready to start accomplishing? </p>
           <form className="home__form">
             <label className="home__label" htmlFor="email">
               Email
@@ -118,6 +118,7 @@ const Home = () => {
               id="email"
               value={email}
               onChange={({ target }) => setEmail(target.value)}
+              placeholder="Enter your email"
             />
             {emailError && <p className="error">{emailError}</p>}
             <label className="home__label" htmlFor="password">
@@ -134,7 +135,7 @@ const Home = () => {
               aria-label="password"
             />
             {passwordError && <p className="error">{passwordError}</p>}
-            <div>
+            <div className="home__button-container">
               <button
                 className="home__button"
                 type="button"
