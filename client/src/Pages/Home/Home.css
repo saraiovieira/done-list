@@ -76,6 +76,19 @@ header {
   border: solid 1px #B7B7B7;
 }
 
+.error {
+  color: #A52727;
+  margin-bottom: 10px;
+}
+
+.error::before {
+  font-weight: 900;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  content: "\58";
+}
+
 .home__button-container {
   margin-top: 10px;
 }
@@ -89,6 +102,7 @@ header {
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
   font-size: 16px;
   border-radius: 8px;
 }
