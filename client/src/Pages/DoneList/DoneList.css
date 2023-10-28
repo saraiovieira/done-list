@@ -6,3 +6,17 @@
     margin: 0;
     padding: 0;
 }
+
+.done-button {
+    position: absolute;
+    right: 20px;
+    background-color: #006212; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 2px;
+}
