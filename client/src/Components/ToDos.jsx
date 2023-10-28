@@ -14,6 +14,7 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
 
     return (
         <>
+            <h2>Today</h2>
             <form onSubmit={createTodo}>
                     <input
                         type="text"
