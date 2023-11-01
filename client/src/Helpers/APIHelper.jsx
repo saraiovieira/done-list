@@ -3,34 +3,37 @@ import axios from "axios"
 const apiPort = process.env.REACT_APP_API_PORT
 const API_URL = `http://localhost:${apiPort}/todos/`;
 
-let headers =  {
-  Authorization : `Bearer ${localStorage.getItem("token")}`
-}
 
-function getConfig(){
-  let config = {
-    headers
-  }
+let AxiosInstance = axios.create({
+  baseURL: API_URL,
+  timeout: 5000,
+});
+
+AxiosInstance.interceptors.request.use(function (config) {
+  let token = localStorage.getItem("token");
+  config.headers["Authorization"] = "Bearer " + token;
   return config;
-}
+});
+
 
 async function createTodoAPI(task, date) {
-  const { data: newTodo } = await axios.post(API_URL, {task, date}, getConfig())
-  return newTodo
+  const { data: newTodo } = await AxiosInstance.post(API_URL, {task, date});
+
+  return newTodo;
 }
 
 async function deleteTodoAPI(id) {
-  const message = await axios.delete(`${API_URL}${id}`, getConfig())
+  const message = await AxiosInstance.delete(`${API_URL}${id}`)
   return message
 }
 
 async function updateTodoAPI(id, task) {
-  const { data: newTodo } = await axios.put(`${API_URL}${id}`,{task}, getConfig())
+  const { data: newTodo } = await AxiosInstance.put(`${API_URL}${id}`,{task})
   return newTodo
 }
 
 async function getAllTodosAPI(date) {
-  const { data: todos } = await axios.get(API_URL, {headers, params: {date}})
+  const { data: todos } = await AxiosInstance.get(API_URL, { params: {date}})
   return todos
 }
 
