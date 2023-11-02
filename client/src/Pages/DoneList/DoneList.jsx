@@ -60,15 +60,17 @@ const DoneList = () => {
   };
   return (
     <>
-      <ToDos
-        todo={todo}
-        setTodo={setTodo}
-        createTodo={createTodo}
-        todos={todos}
-        updateTodo={updateTodo}
-        deleteTodo={deleteTodo}
-      />
+    <div className="list-container">
       <CalendarDate dateChanged={dateChanged} />
+      <ToDos
+          todo={todo}
+          setTodo={setTodo}
+          createTodo={createTodo}
+          todos={todos}
+          updateTodo={updateTodo}
+          deleteTodo={deleteTodo}
+        />
+    </div>
     </>
   );
 };

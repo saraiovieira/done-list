@@ -14,7 +14,8 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
 
     return (
         <>
-            <h2>Today</h2>
+        <div>
+            <h2>Your Accomplishments</h2>
             <form onSubmit={createTodo}>
                     <input
                         type="text"
@@ -28,7 +29,7 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
                         Add task
                     </button>  
                 </form>
-            <ul>
+            <ul className="tasks_list">
                 {todos.map(({ _id, task, completed}, i) => (
                     <li
                         key={i}
@@ -46,6 +47,7 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
                     </li>
                 ))}
             </ul>
+            </div>
         </>
     )
 };

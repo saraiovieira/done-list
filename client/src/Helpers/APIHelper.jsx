@@ -5,8 +5,7 @@ const API_URL = `http://localhost:${apiPort}/todos/`;
 
 
 let AxiosInstance = axios.create({
-  baseURL: API_URL,
-  timeout: 5000,
+  baseURL: API_URL
 });
 
 AxiosInstance.interceptors.request.use(function (config) {

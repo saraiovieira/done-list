@@ -8,9 +8,7 @@
 }
 
 .done-button {
-    position: absolute;
-    right: 20px;
-    background-color: #006212; /* Green */
+    background-color: #006212;
     border: none;
     color: white;
     padding: 5px 20px;
@@ -19,4 +17,39 @@
     cursor: pointer;
     font-size: 16px;
     border-radius: 2px;
+}
+
+.list-container {
+    display: flex;
+    justify-content: center;
+}
+
+.calendar {
+    display: none;
+}
+
+form, .tasks_list {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 80px;
+}
+
+form {
+    padding-top: 20px;
+}
+
+.tasks_list {
+    list-style: none;
+    padding-top: 20px;
+}
+
+@media (min-width:641px) {
+    .done-button {
+        position: absolute;
+        right: 20px;
+    }
 }

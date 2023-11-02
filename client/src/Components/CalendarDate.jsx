@@ -12,7 +12,7 @@ const CalendarDate = ({ dateChanged }) => {
 
   return (
     <>
-      <div>
+      <div className="calendar">
         <Calendar
           onChange={setDate}
           value={date}
