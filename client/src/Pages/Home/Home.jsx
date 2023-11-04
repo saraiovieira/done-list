@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./Home.css";
-import {
-getConfig
-} from "../../Helpers/APIHelper";
 import { useNavigate } from "react-router-dom";
 import { validEmail, validPassword } from "../../Validation/Validation";
 import doneImage from "../../../src/done-image.png";
