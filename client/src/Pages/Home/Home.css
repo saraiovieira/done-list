@@ -12,7 +12,7 @@ header,
   background-color: #7bed8d;
 }
 
-header {
+.main__header {
   display: flex;
   padding: 10px;
   align-items: center;

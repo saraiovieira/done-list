@@ -1,5 +1,7 @@
 import React from "react";
 import Logo from "../../src/logo.svg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 const DoneHeader = () => {
   const logOut = () => {
@@ -8,9 +10,12 @@ const DoneHeader = () => {
   };
 
   return (
-    <header>
-      <img className="logo" src={Logo} alt="Done list logo" />
-      <h1> Your Done List </h1>
+    <header className="done__header">
+      <div className="logo_container">
+        <img className="logo" src={Logo} alt="Done list logo" />
+        <h1> Your Done List </h1>
+      </div>
+      <FontAwesomeIcon icon={faRightFromBracket} onClick={logOut} />
       <button className="done-button" type="button" onClick={logOut}>
         Log out
       </button>

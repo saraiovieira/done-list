@@ -7,8 +7,21 @@
     padding: 0;
 }
 
+.done__header {
+    padding: 10px;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+.logo_container {
+    display: flex;
+}
+
 .done-button {
     background-color: #006212;
+    display: none;
     border: none;
     color: white;
     padding: 5px 20px;
@@ -51,5 +64,6 @@ form {
     .done-button {
         position: absolute;
         right: 20px;
+        display: flex;
     }
 }
