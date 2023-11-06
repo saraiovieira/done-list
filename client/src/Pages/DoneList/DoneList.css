@@ -19,6 +19,10 @@
     display: flex;
 }
 
+.logout {
+    color: rgb(213, 18, 18);
+}
+
 .done-button {
     background-color: #006212;
     display: none;
@@ -49,6 +53,7 @@ form, .tasks_list {
 h2 {
     text-align: center;
     padding-top: 80px;
+    color: #006212;
 }
 
 form {
@@ -58,6 +63,13 @@ form {
 .tasks_list {
     list-style: none;
     padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit_icon {
+    color: #006212;
 }
 
 @media (min-width:641px) {
@@ -65,5 +77,9 @@ form {
         position: absolute;
         right: 20px;
         display: flex;
+    }
+
+    .logout {
+        display: none;
     }
 }

@@ -15,20 +15,7 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
     return (
         <>
         <div>
-            <h2>Your Accomplishments</h2>
-            <form onSubmit={createTodo}>
-                    <input
-                        type="text"
-                        id="new-todo-input"
-                        value={todo}
-                        onChange={({ target }) => setTodo(target.value)}
-                        placeholder='Task name'
-                        autoComplete="off"
-                    />
-                    <button type="submit">
-                        Add task
-                    </button>  
-                </form>
+            <h2>Congrats! You accomplished ? tasks</h2>
             <ul className="tasks_list">
                 {todos.map(({ _id, task, completed}, i) => (
                     <li
@@ -42,11 +29,24 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
                         className={completed ? "completed" : ""}
                     />
                     {task}
-                    <MdEdit onClick={editTodo}></MdEdit>
+                    <MdEdit className="edit_icon" onClick={editTodo}></MdEdit>
                     <BsFillTrashFill onClick={e => deleteTodo(e, _id)}></BsFillTrashFill>
                     </li>
                 ))}
             </ul>
+            <form onSubmit={createTodo}>
+                    <input
+                        type="text"
+                        id="new-todo-input"
+                        value={todo}
+                        onChange={({ target }) => setTodo(target.value)}
+                        placeholder='Task name'
+                        autoComplete="off"
+                    />
+                    <button type="submit">
+                        Add task
+                    </button>  
+                </form>
             </div>
         </>
     )
