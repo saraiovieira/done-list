@@ -28,13 +28,14 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
                         onClick={e => updateTodo(e, _id)}
                         className={completed ? "completed" : ""}
                     />
-                    {task}
+                    <span className="checkmark"></span>
+                    <span className='task'>{task}</span>
                     <MdEdit className="edit_icon" onClick={editTodo}></MdEdit>
-                    <BsFillTrashFill onClick={e => deleteTodo(e, _id)}></BsFillTrashFill>
+                    <BsFillTrashFill className="trash_icon" onClick={e => deleteTodo(e, _id)}></BsFillTrashFill>
                     </li>
                 ))}
             </ul>
-            <form onSubmit={createTodo}>
+            <form className="add-tasks" onSubmit={createTodo}>
                     <input
                         type="text"
                         id="new-todo-input"
