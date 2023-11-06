@@ -15,7 +15,7 @@ const DoneHeader = () => {
         <img className="logo" src={Logo} alt="Done list logo" />
         <h1> Your Done List </h1>
       </div>
-      <FontAwesomeIcon icon={faRightFromBracket} onClick={logOut} />
+      <FontAwesomeIcon className="logout" icon={faRightFromBracket} onClick={logOut} />
       <button className="done-button" type="button" onClick={logOut}>
         Log out
       </button>
