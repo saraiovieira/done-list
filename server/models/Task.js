@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const todoTaskSchema = new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
   user_id: {
     type: String,
     required: false,
@@ -21,4 +21,4 @@ const todoTaskSchema = new mongoose.Schema({
   },
 });
 
-export const TodoTask = mongoose.model("TodoTask", todoTaskSchema);
+export const Task = mongoose.model("TaskTask", taskSchema);

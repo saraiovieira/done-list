@@ -1,4 +1,4 @@
-import { TodoTask } from "../models/TodoTask.js";
+import { Task } from "../models/Task.js";
 
 function success(res, payload) {
   return res.status(200).json(payload);
@@ -8,54 +8,54 @@ function TimestampToDate(timestamp) {
   return new Date(parseInt(timestamp)).toLocaleDateString();
 }
 
-export const createTodo = async (req, res) => {
+export const createTask = async (req, res) => {
   try {
-    const todo = await TodoTask.create({
+    const task = await Task.create({
       user_id: req.user.user_id,
       task: req.body.task,
       completed: req.body.completed,
       createdAt: TimestampToDate(req.body.date),
     });
-    return success(res, todo);
+    return success(res, task);
   } catch (err) {
     console.log(err);
   }
 };
 
-export const getTodos = async (req, res) => {
+export const getTasks = async (req, res) => {
   try {
-    const todos = await TodoTask.find({
+    const tasks = await Task.find({
       user_id: req.user.user_id,
       createdAt: TimestampToDate(req.query.date),
     });
-    return success(res, todos);
+    return success(res, tasks);
   } catch (err) {
     console.log(err);
   }
 };
 
-export const updateTodo = async (req, res) => {
+export const updateTask = async (req, res) => {
   try {
-    const todo = await TodoTask.findOneAndUpdate(
+    const task = await Task.findOneAndUpdate(
       { _id: req.params.id, user_id: req.user.user_id },
       req.body,
       {
         new: true,
       }
     );
-    return success(res, todo);
+    return success(res, task);
   } catch (err) {
     console.log(err);
   }
 };
 
-export const deleteTodo = async (req, res) => {
+export const deleteTask = async (req, res) => {
   try {
-    await TodoTask.findByIdAndRemove({
+    await Task.findByIdAndRemove({
       _id: req.params.id,
       user_id: req.user.user_id,
     });
-    return success(res, "todo deleted!");
+    return success(res, "task deleted!");
   } catch (err) {
     console.log(err);
   }

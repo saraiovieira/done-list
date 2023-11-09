@@ -2,7 +2,7 @@ import express from 'express';
 import { login } from '../controllers/login.js';
 import { validate, register } from '../controllers/register.js';
 import { verifyToken } from '../middleware/auth.js';
-import { createTodo, getTodos, updateTodo, deleteTodo } from '../controllers/todos.js'
+import { createTask, getTasks, updateTask, deleteTask } from '../controllers/tasks.js'
 
 const router = express.Router();
 
@@ -10,12 +10,12 @@ router.post("/register", validate('register'), register);
 
 router.post("/login", login);
 
-router.post("/todos", verifyToken, createTodo);
+router.post("/tasks", verifyToken, createTask);
 
-router.get("/todos", verifyToken, getTodos);
+router.get("/tasks", verifyToken, getTasks);
 
-router.put("/todos/:id", verifyToken, updateTodo);
+router.put("/tasks/:id", verifyToken, updateTask);
 
-router.delete("/todos/:id", verifyToken, deleteTodo);
+router.delete("/tasks/:id", verifyToken, deleteTask);
 
 export default router;

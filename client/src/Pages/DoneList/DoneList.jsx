@@ -1,74 +1,74 @@
 import React, { useState, useEffect } from "react";
 import "./DoneList.css";
 import {
-  createTodoAPI,
-  deleteTodoAPI,
-  updateTodoAPI,
-  getAllTodosAPI,
+  createTaskAPI,
+  deleteTaskAPI,
+  updateTaskAPI,
+  getAllTasksAPI,
 } from "../../Helpers/APIHelper";
-import ToDos from "../../Components/ToDos";
+import Tasks from "../../Components/Tasks";
 import CalendarDate from "../../Components/CalendarDate";
 
 const DoneList = () => {
-  const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
-    getAllTodos();
+    getAllTasks();
   }, []);
 
-  const getAllTodos = async (date = Date.now()) => {
-    getAllTodosAPI(date).then((todos) => {
-      setTodos(todos);
+  const getAllTasks = async (date = Date.now()) => {
+    getAllTasksAPI(date).then((tasks) => {
+      setTasks(tasks);
     });
   };
 
   const dateChanged = (date) => {
-    getAllTodos(date);
+    getAllTasks(date);
     setDate(date);
   };
 
-  const createTodo = async (e) => {
+  const createTask = async (e) => {
     e.preventDefault();
 
-    if (!todo) {
+    if (!task) {
       return;
     }
 
-    const newTodo = await createTodoAPI(todo, date);
-    setTodos([...todos, newTodo]);
-    setTodo("");
+    const newTask = await createTaskAPI(task, date);
+    setTasks([...tasks, newTask]);
+    setTask("");
   };
 
-  const deleteTodo = async (e, id) => {
+  const deleteTask = async (e, id) => {
     try {
       e.stopPropagation();
-      await deleteTodoAPI(id);
-      setTodos(todos.filter(({ _id: i }) => id !== i));
+      await deleteTaskAPI(id);
+      setTasks(tasks.filter(({ _id: i }) => id !== i));
     } catch (err) {}
   };
 
-  const updateTodo = async (e, id) => {
+  const updateTask = async (e, id) => {
     e.stopPropagation();
     e.preventDefault();
-    const newTodo = {
-      changed: !todos.find((todo) => todo._id === id).changed,
+    const newTask = {
+      changed: !tasks.find((task) => task._id === id).changed,
     };
-    const updatedTodo = await updateTodoAPI(id, newTodo);
-    setTodos(todos.map((todo) => (todo._id === id ? updatedTodo : todo)));
+    const updatedTask = await updateTaskAPI(id, newTask);
+    setTasks(tasks.map((task) => (task._id === id ? updatedTask : task)));
   };
   return (
     <>
     <div className="list-container">
       <CalendarDate dateChanged={dateChanged} />
-      <ToDos
-          todo={todo}
-          setTodo={setTodo}
-          createTodo={createTodo}
-          todos={todos}
-          updateTodo={updateTodo}
-          deleteTodo={deleteTodo}
+      <Tasks
+          task={task}
+          setTask={setTask}
+          createTask={createTask}
+          tasks={tasks}
+          updateTask={updateTask}
+          deleteTask={deleteTask}
         />
     </div>
     </>

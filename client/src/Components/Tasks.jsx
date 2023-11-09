@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { MdEdit } from "react-icons/md";
 import { BsFillTrashFill } from "react-icons/bs";
 
-const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => {
+const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => {
     const [newTask, setNewTask] = useState("");
     
     const [editId, setEdit] = useState(false);    
 
-    const editTodo = (e) => {
+    const editTask = (e) => {
         e.preventDefault();
         setEdit(true);
     }
@@ -17,30 +17,30 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
         <div>
             <h2>Congrats! You accomplished ? tasks</h2>
             <ul className="tasks_list">
-                {todos.map(({ _id, task, completed}, i) => (
+                {tasks.map(({ _id, task, completed}, i) => (
                     <li
                         key={i}
                     >
                     <input 
-                        id="todo-complete" 
+                        id="task-complete" 
                         type="checkbox" 
                         defaultChecked={true} 
-                        onClick={e => updateTodo(e, _id)}
+                        onClick={e => updateTask(e, _id)}
                         className={completed ? "completed" : ""}
                     />
                     <span className="checkmark"></span>
                     <span className='task'>{task}</span>
-                    <MdEdit className="edit_icon" onClick={editTodo}></MdEdit>
-                    <BsFillTrashFill className="trash_icon" onClick={e => deleteTodo(e, _id)}></BsFillTrashFill>
+                    <MdEdit className="edit_icon" onClick={editTask}></MdEdit>
+                    <BsFillTrashFill className="trash_icon" onClick={e => deleteTask(e, _id)}></BsFillTrashFill>
                     </li>
                 ))}
             </ul>
-            <form className="add-tasks" onSubmit={createTodo}>
+            <form className="add-tasks" onSubmit={createTask}>
                     <input
                         type="text"
-                        id="new-todo-input"
-                        value={todo}
-                        onChange={({ target }) => setTodo(target.value)}
+                        id="new-task-input"
+                        value={task}
+                        onChange={({ target }) => setTask(target.value)}
                         placeholder='Task name'
                         autoComplete="off"
                     />
@@ -53,4 +53,4 @@ const ToDos = ({ todo, setTodo, createTodo, todos, updateTodo, deleteTodo }) => 
     )
 };
 
-export default ToDos
+export default Tasks

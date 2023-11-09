@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const apiPort = process.env.REACT_APP_API_PORT
-const API_URL = `http://localhost:${apiPort}/todos/`;
+const API_URL = `http://localhost:${apiPort}/tasks/`;
 
 
 let AxiosInstance = axios.create({
@@ -15,25 +15,25 @@ AxiosInstance.interceptors.request.use(function (config) {
 });
 
 
-async function createTodoAPI(task, date) {
-  const { data: newTodo } = await AxiosInstance.post(API_URL, {task, date});
+async function createTaskAPI(task, date) {
+  const { data: newTask } = await AxiosInstance.post(API_URL, {task, date});
 
-  return newTodo;
+  return newTask;
 }
 
-async function deleteTodoAPI(id) {
+async function deleteTaskAPI(id) {
   const message = await AxiosInstance.delete(`${API_URL}${id}`)
   return message
 }
 
-async function updateTodoAPI(id, task) {
-  const { data: newTodo } = await AxiosInstance.put(`${API_URL}${id}`,{task})
-  return newTodo
+async function updateTaskAPI(id, task) {
+  const { data: newTask } = await AxiosInstance.put(`${API_URL}${id}`,{task})
+  return newTask
 }
 
-async function getAllTodosAPI(date) {
-  const { data: todos } = await AxiosInstance.get(API_URL, { params: {date}})
-  return todos
+async function getAllTasksAPI(date) {
+  const { data: tasks } = await AxiosInstance.get(API_URL, { params: {date}})
+  return tasks
 }
 
-export { createTodoAPI, deleteTodoAPI, updateTodoAPI, getAllTodosAPI}
+export { createTaskAPI, deleteTaskAPI, updateTaskAPI, getAllTasksAPI}
