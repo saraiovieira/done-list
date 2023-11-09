@@ -119,11 +119,13 @@ form {
 .edit_icon {
     margin-left: 45px;
     color: #006212;
+    cursor: pointer;
 }
 
 .trash_icon {
     margin-left: 10px;
     color: #006212;
+    cursor: pointer;
 }
 
 .add-tasks input {
