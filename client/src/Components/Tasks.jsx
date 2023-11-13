@@ -15,7 +15,7 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => 
     return (
         <>
         <div>
-            <h2>Congrats! You accomplished ? tasks</h2>
+            <h2 className="tasks__title">Congrats! You accomplished ? tasks</h2>
             <ul className="tasks_list">
                 {tasks.map(({ _id, task, completed}, i) => (
                     <li
@@ -30,8 +30,10 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => 
                     />
                     <span className="checkmark"></span>
                     <span className='task'>{task}</span>
-                    <MdEdit className="edit_icon" onClick={editTask}></MdEdit>
-                    <BsFillTrashFill className="trash_icon" onClick={e => deleteTask(e, _id)}></BsFillTrashFill>
+                    <div>
+                        <MdEdit className="edit_icon" onClick={editTask}></MdEdit>
+                        <BsFillTrashFill className="trash_icon" onClick={e => deleteTask(e, _id)}></BsFillTrashFill>
+                    </div>
                     </li>
                 ))}
             </ul>
