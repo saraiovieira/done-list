@@ -107,10 +107,10 @@ const Home = () => {
       </article>
       <div className="home__second-section">
         <div className="home__form-section">
-          <p className="home__form-title">Ready to start accomplishing? </p>
+          <h2 className="home__form-title">Ready to start accomplishing? </h2>
           <form className="home__form">
             <label className="home__label" htmlFor="email">
-              Email
+              E-mail
             </label>
             <input
               className="home__input"
@@ -119,7 +119,7 @@ const Home = () => {
               id="email"
               value={email}
               onChange={({ target }) => setEmail(target.value)}
-              placeholder="Enter your email"
+              placeholder="Enter your email..."
             />
             {emailError && <p className="error">{emailError}</p>}
             <label className="home__label" htmlFor="password">
@@ -132,7 +132,7 @@ const Home = () => {
               id="password"
               value={password}
               onChange={({ target }) => setPassword(target.value)}
-              placeholder="Enter your password"
+              placeholder="Enter your password..."
               aria-label="password"
             />
             {passwordError && <p className="error">{passwordError}</p>}

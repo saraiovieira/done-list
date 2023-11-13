@@ -50,10 +50,13 @@ form, .tasks_list {
     justify-content: center;
 }
 
-h2 {
+.tasks__title {
+    width: 95%;
     text-align: center;
+    font-weight: bold;
     padding-top: 80px;
     color: #006212;
+    font-size: 28px;
 }
 
 form {
@@ -69,6 +72,8 @@ form {
 
 .tasks_list li {
     position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 
 .tasks_list input  {
