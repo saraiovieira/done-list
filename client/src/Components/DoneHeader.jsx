@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../src/logo.svg";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const DoneHeader = () => {
   const logOut = () => {
