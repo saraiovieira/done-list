@@ -15,7 +15,7 @@ header,
 .main__header {
   display: flex;
   align-items: center;
-  padding: .5em .5em 2em .5em;
+  padding: .5em;
 }
 
 .logo {

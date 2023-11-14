@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
-import "./Home.css";
+import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { validEmail, validPassword } from "../../Validation/Validation";
-import doneImage from "../../../src/done-image.png";
 
 const Home = () => {
   let navigate = useNavigate();
@@ -95,25 +94,24 @@ const Home = () => {
 
   return (
     <>
-      <article className="home__article">
-        <p className="home_paragraph-first">
-          This is the place where you write down <br /> all of the things that
-          you’ve already done.
-        </p>
-        <p className="home_paragraph">
-          Every time you log in, you will feel <br /> accomplished, grateful,
-          productive and encouraged to do more!
-        </p>
-      </article>
-      <div className="home__second-section">
-        <div className="home__form-section">
-          <h2 className="home__form-title">Ready to start accomplishing? </h2>
-          <form className="home__form">
-            <label className="home__label" htmlFor="email">
+      <div className="login__second-section">
+        <div className="login__form-section">
+          <h2 className="login__form-title">Ready to start accomplishing? </h2>
+          <h3 className="login__guest-title">Enter as a guest</h3>
+          <button
+            className="login__guest-button"
+            type="button"
+          >
+            Enter
+          </button>
+          <hr className="divider"/>
+          <h3 className="login__email-title">Enter with email</h3>
+          <form className="login__form">
+            <label className="login__label" htmlFor="email">
               E-mail
             </label>
             <input
-              className="home__input"
+              className="login__input"
               type="text"
               name="Email"
               id="email"
@@ -122,11 +120,11 @@ const Home = () => {
               placeholder="Enter your email..."
             />
             {emailError && <p className="error">{emailError}</p>}
-            <label className="home__label" htmlFor="password">
+            <label className="login__label" htmlFor="password">
               Password
             </label>
             <input
-              className="home__input"
+              className="login__input"
               type="password"
               name="Password"
               id="password"
@@ -136,16 +134,16 @@ const Home = () => {
               aria-label="password"
             />
             {passwordError && <p className="error">{passwordError}</p>}
-            <div className="home__button-container">
+            <div className="login__button-container">
               <button
-                className="home__button"
+                className="login__button"
                 type="button"
                 onClick={handleLogin}
               >
                 Login
               </button>
               <button
-                className="home__button"
+                className="login__button"
                 type="button"
                 onClick={handleRegister}
               >
@@ -154,9 +152,6 @@ const Home = () => {
             </div>
             {errorMessage && <p className="error">{errorMessage}</p>}
           </form>
-        </div>
-        <div className="home__img-container">
-          <img src={doneImage} alt="Woman who is happy to have finished a task and is sitting in front of a desk with her laptop open" />
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainHeader from "./Components/MainHeader";
 import DoneHeader from "./Components/DoneHeader";
 import Welcome from "./Pages/Welcome/Welcome.jsx";
-import Home from "./Pages/Home/Home.jsx";
+import Login from "./Pages/Login/Login.jsx";
 import PrivateRoute from "./Pages/PrivateRoute";
 import DoneList from "./Pages/DoneList/DoneList.jsx";
 import NotFound from "./Pages/NotFound";
@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={[<MainHeader />, <Welcome />]} />
-        <Route path="/login" element={[<MainHeader />, <Home />]} />
+        <Route path="/login" element={[<MainHeader />, <Login />]} />
         <Route element={<PrivateRoute />}>
           <Route path="/donelist" element={[<DoneHeader />, <DoneList />]} />
         </Route>
