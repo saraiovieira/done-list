@@ -95,63 +95,67 @@ const Home = () => {
   return (
     <>
       <div className="login__second-section">
-        <div className="login__form-section">
           <h2 className="login__form-title">Ready to start accomplishing? </h2>
-          <h3 className="login__guest-title">Enter as a guest</h3>
-          <button
-            className="login__guest-button"
-            type="button"
-          >
-            Enter
-          </button>
-          <hr className="divider"/>
-          <h3 className="login__email-title">Enter with email</h3>
-          <form className="login__form">
-            <label className="login__label" htmlFor="email">
-              E-mail
-            </label>
-            <input
-              className="login__input"
-              type="text"
-              name="Email"
-              id="email"
-              value={email}
-              onChange={({ target }) => setEmail(target.value)}
-              placeholder="Enter your email..."
-            />
-            {emailError && <p className="error">{emailError}</p>}
-            <label className="login__label" htmlFor="password">
-              Password
-            </label>
-            <input
-              className="login__input"
-              type="password"
-              name="Password"
-              id="password"
-              value={password}
-              onChange={({ target }) => setPassword(target.value)}
-              placeholder="Enter your password..."
-              aria-label="password"
-            />
-            {passwordError && <p className="error">{passwordError}</p>}
-            <div className="login__button-container">
+          <div className="login__choose-section">
+            <div className="login__guest-section">
+              <h3 className="login__guest-title">Enter as a guest</h3>
               <button
-                className="login__button"
+                className="login__guest-button"
                 type="button"
-                onClick={handleLogin}
               >
-                Login
-              </button>
-              <button
-                className="login__button"
-                type="button"
-                onClick={handleRegister}
-              >
-                Signup
+                Enter
               </button>
             </div>
-            {errorMessage && <p className="error">{errorMessage}</p>}
-          </form>
+            <hr className="divider"/>
+            <div className="login__form-section">
+              <h3 className="login__email-title">Enter with email</h3>
+              <form className="login__form">
+                <label className="login__label" htmlFor="email">
+                  E-mail
+                </label>
+                <input
+                  className="login__input"
+                  type="text"
+                  name="Email"
+                  id="email"
+                  value={email}
+                  onChange={({ target }) => setEmail(target.value)}
+                  placeholder="Enter your email..."
+                />
+                {emailError && <p className="error">{emailError}</p>}
+                <label className="login__label" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  className="login__input"
+                  type="password"
+                  name="Password"
+                  id="password"
+                  value={password}
+                  onChange={({ target }) => setPassword(target.value)}
+                  placeholder="Enter your password..."
+                  aria-label="password"
+                />
+                {passwordError && <p className="error">{passwordError}</p>}
+                <div className="login__button-container">
+                  <button
+                    className="login__button"
+                    type="button"
+                    onClick={handleLogin}
+                  >
+                    Login
+                  </button>
+                  <button
+                    className="login__button"
+                    type="button"
+                    onClick={handleRegister}
+                  >
+                    Signup
+                  </button>
+                </div>
+                {errorMessage && <p className="error">{errorMessage}</p>}
+              </form>
+          </div>
         </div>
       </div>
     </>
