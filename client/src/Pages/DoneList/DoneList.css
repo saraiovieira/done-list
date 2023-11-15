@@ -17,23 +17,15 @@
 
 .logo_container {
     display: flex;
+    align-items: center;
 }
 
 .logout {
     color: rgb(213, 18, 18);
 }
 
-.done-button {
-    background-color: #006212;
+.logout-button {
     display: none;
-    border: none;
-    color: white;
-    padding: 5px 20px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 2px;
 }
 
 .list-container {
@@ -140,7 +132,7 @@ form {
 }
 
 .add-tasks button {
-    background-color: #006212; /* Green */
+    background-color: #006212;
     border: none;
     color: white;
     padding: 5px 20px;
@@ -152,10 +144,14 @@ form {
 }
 
 @media (min-width:641px) {
-    .done-button {
+    .logout-button {
         position: absolute;
         right: 20px;
+        width: unset;
+        font-size: .9em;
+        margin-bottom: 0;
         display: flex;
+        padding: 5px 55px;
     }
 
     .logout {

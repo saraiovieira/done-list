@@ -16,7 +16,7 @@ const DoneHeader = () => {
         <h1 className="main__title"> Your Done List </h1>
       </div>
       <FontAwesomeIcon className="logout" icon={faRightFromBracket} onClick={logOut} />
-      <button className="done-button" type="button" onClick={logOut}>
+      <button className="logout-button" type="button" onClick={logOut}>
         Log out
       </button>
     </header>
