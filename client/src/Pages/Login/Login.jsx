@@ -32,7 +32,7 @@ const Home = () => {
       isPasswordValid.passwordError = "Password is required";
     } else if (!validPassword.test(password)) {
       isPasswordValid.status = false;
-      isPasswordValid.passwordError = "Password is invalid";
+      isPasswordValid.passwordError = "Password is invalid. Your password must have at least 1 letter, 1 number and 6 digits";
     }
     return isPasswordValid;
   };
