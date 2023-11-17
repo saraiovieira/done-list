@@ -51,8 +51,9 @@ form, .tasks_list {
     font-size: 28px;
 }
 
-form {
+.add-tasks{
     padding-top: 20px;
+    gap: 15px;
 }
 
 .tasks_list {
@@ -126,7 +127,10 @@ form {
 }
 
 .add-tasks input {
-    padding: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 5px;
     background-color: #F2F2F2;
     border: solid 1px #B7B7B7;
 }
@@ -134,13 +138,12 @@ form {
 .add-tasks button {
     background-color: #006212;
     border: none;
+    margin-bottom: 15px;
     color: white;
-    padding: 5px 20px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 2px;
 }
 
 @media (min-width:641px) {
