@@ -12,6 +12,8 @@ const Home = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [registered, setRegistered] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
 
   let validateEmail = (email) => {
     let isEmailValid = { status: true, emailError: "" };
@@ -37,6 +39,12 @@ const Home = () => {
     return isPasswordValid;
   };
 
+  const handleRedirect = (e) => {
+    const token = "guest";
+    localStorage.setItem("token", token);
+    navigate("/donelist")
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -58,6 +66,7 @@ const Home = () => {
       } catch (err) {
         console.log(err);
         setErrorMessage("Invalid Credentials");
+        setForgotPassword(true);
       }
     } else {
       setEmailError(emailIsValid.emailError);
@@ -85,6 +94,7 @@ const Home = () => {
       } catch (err) {
         console.log(err);
         setErrorMessage(`Email: ${email} already exists`);
+        setRegistered(true);
       }
     } else {
       setEmailError(emailIsValid.emailError);
@@ -102,6 +112,7 @@ const Home = () => {
               <button
                 className="login__guest-button"
                 type="button"
+                onClick={handleRedirect}
               >
                 Enter
               </button>
@@ -114,20 +125,21 @@ const Home = () => {
                   E-mail
                 </label>
                 <input
-                  className="login__input"
+                  className={emailError ? "login__input login__input-error" : "login__input"}
                   type="text"
                   name="Email"
                   id="email"
                   value={email}
                   onChange={({ target }) => setEmail(target.value)}
                   placeholder="Enter your email..."
+                  required
                 />
                 {emailError && <p className="error">{emailError}</p>}
                 <label className="login__label" htmlFor="password">
                   Password
                 </label>
                 <input
-                  className="login__input"
+                  className={passwordError ? "login__input login__input-error" : "login__input"}
                   type="password"
                   name="Password"
                   id="password"
@@ -135,16 +147,16 @@ const Home = () => {
                   onChange={({ target }) => setPassword(target.value)}
                   placeholder="Enter your password..."
                   aria-label="password"
+                  required
                 />
                 {passwordError && <p className="error">{passwordError}</p>}
-                <div className="login__button-container">
-                  <button
+                {registered === true ? <button
                     className="login__button"
                     type="button"
                     onClick={handleLogin}
                   >
                     Login
-                  </button>
+                  </button> : <div className="login__button-container">
                   <button
                     className="login__button"
                     type="button"
@@ -152,8 +164,9 @@ const Home = () => {
                   >
                     Signup
                   </button>
-                </div>
+                </div>}
                 {errorMessage && <p className="error">{errorMessage}</p>}
+                {forgotPassword && <p>Forgot password? Click <a href="/login">here</a> to register again</p>}
               </form>
           </div>
         </div>
