@@ -9,8 +9,8 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 const Welcome = () => {
   let navigate = useNavigate();
 
-  const handleRedirect = async (e) => {
-    navigate("/login")
+  const handleRedirect = () => {
+    navigate("/login");
   }
 
   return (
