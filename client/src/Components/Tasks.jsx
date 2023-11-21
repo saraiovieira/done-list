@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { MdEdit } from "react-icons/md";
 import { BsFillTrashFill } from "react-icons/bs";
 
-const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => {
+const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => { 
     const [newTask, setNewTask] = useState("");
-    
+   
     const [editId, setEdit] = useState(false);    
 
     const editTask = (e) => {

@@ -19,9 +19,15 @@ const DoneList = () => {
   }, []);
 
   const getAllTasks = async (date = Date.now()) => {
-    getAllTasksAPI(date).then((tasks) => {
-      setTasks(tasks);
-    });
+    const token = localStorage.getItem("token");
+    if(token === "guest") {
+      JSON.parse(localStorage.getItem("tasks"));
+      setTasks(JSON.parse(localStorage.getItem("tasks")));
+    } else {
+      getAllTasksAPI(date).then((tasks) => {
+        setTasks(tasks);
+      });
+    }
   };
 
   const dateChanged = (date) => {
@@ -31,32 +37,59 @@ const DoneList = () => {
 
   const createTask = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+    if(token === "guest") {
+      const newTask = { task: task, id: Date.now() };
+      setTasks([...tasks, newTask]);
+      setTask("");
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+
 
     if (!task) {
       return;
     }
+  } else {
 
     const newTask = await createTaskAPI(task, date);
     setTasks([...tasks, newTask]);
     setTask("");
+    }
   };
 
   const deleteTask = async (e, id) => {
-    try {
-      e.stopPropagation();
-      await deleteTaskAPI(id);
-      setTasks(tasks.filter(({ _id: i }) => id !== i));
-    } catch (err) {}
+    const token = localStorage.getItem("token");
+    if(token === "guest") {
+      let newTasks = tasks.filter(({ _id: i }) => id !== i);
+      setTasks(newTasks);
+    } else {
+      try {
+        e.stopPropagation();
+        await deleteTaskAPI(id);
+        setTasks(tasks.filter(({ _id: i }) => id !== i));
+      } catch (err) {}
+    }
   };
 
   const updateTask = async (e, id) => {
     e.stopPropagation();
     e.preventDefault();
-    const newTask = {
-      changed: !tasks.find((task) => task._id === id).changed,
-    };
-    const updatedTask = await updateTaskAPI(id, newTask);
-    setTasks(tasks.map((task) => (task._id === id ? updatedTask : task)));
+    const token = localStorage.getItem("token");
+    if(token === "guest") {
+      let newTasks = tasks.filter(({ _id: i }) => id !== i);
+      setTasks(newTasks);
+    } else {
+      try {
+        e.stopPropagation();
+        await deleteTaskAPI(id);
+        setTasks(tasks.filter(({ _id: i }) => id !== i));
+      } catch (err) { 
+        const newTask = {
+          changed: !tasks.find((task) => task._id === id).changed,
+        };
+        const updatedTask = await updateTaskAPI(id, newTask);
+        setTasks(tasks.map((task) => (task._id === id ? updatedTask : task)));
+      }
+    }
   };
   return (
     <>
