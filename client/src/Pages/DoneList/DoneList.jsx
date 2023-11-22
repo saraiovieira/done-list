@@ -37,23 +37,23 @@ const DoneList = () => {
 
   const createTask = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
-    if(token === "guest") {
-      const newTask = { task: task, id: Date.now() };
-      setTasks([...tasks, newTask]);
-      setTask("");
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-
-
-    if (!task) {
+   
+    if (task) {
+      const token = localStorage.getItem("token");
+      if(token === "guest") {
+        const newTask = { title: task, id: Date.now() };
+        setTasks([...tasks, newTask]);
+        setTask("");
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      } else {
+        const newTask = await createTaskAPI(task, date);
+        setTasks([...tasks, newTask]);
+        setTask("");
+      }
+    } else {
       return;
     }
-  } else {
 
-    const newTask = await createTaskAPI(task, date);
-    setTasks([...tasks, newTask]);
-    setTask("");
-    }
   };
 
   const deleteTask = async (e, id) => {
