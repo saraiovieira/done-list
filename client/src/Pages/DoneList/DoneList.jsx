@@ -21,8 +21,13 @@ const DoneList = () => {
   const getAllTasks = async (date = Date.now()) => {
     const token = localStorage.getItem("token");
     if(token === "guest") {
-      JSON.parse(localStorage.getItem("tasks"));
+      const savedTasks = localStorage.getItem("tasks");
+      if (savedTasks) {
+      JSON.parse(savedTasks);
       setTasks(JSON.parse(localStorage.getItem("tasks")));
+      } else {
+        return [];
+      }
     } else {
       getAllTasksAPI(date).then((tasks) => {
         setTasks(tasks);
