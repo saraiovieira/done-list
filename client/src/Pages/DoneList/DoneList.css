@@ -33,9 +33,7 @@
     justify-content: center;
 }
 
-.calendar {
-    display: none;
-}
+
 
 form, .tasks_list {
     display: flex;
