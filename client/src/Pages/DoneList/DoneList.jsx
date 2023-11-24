@@ -15,28 +15,33 @@ const DoneList = () => {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
-    getAllTasks();
-  }, []);
-
-  const getAllTasks = async (date = Date.now()) => {
     const token = localStorage.getItem("token");
     if(token === "guest") {
-      const savedTasks = localStorage.getItem("tasks");
-      if (savedTasks) {
-      JSON.parse(savedTasks);
-      setTasks(JSON.parse(localStorage.getItem("tasks")));
-      } else {
-        return [];
-      }
+      getAllTasksGuest();
     } else {
+      getAllTasksUser();
+    }
+  }, []);
+
+  const getAllTasksUser = async (date = Date.now()) => {
       getAllTasksAPI(date).then((tasks) => {
         setTasks(tasks);
       });
-    }
+  };
+
+  const getAllTasksGuest = () => {
+      const savedTasks = localStorage.getItem("tasks");
+      if (savedTasks) {
+        setTasks(JSON.parse(savedTasks));
+      } else {
+        return [];
+      }
   };
 
   const dateChanged = (date) => {
-    getAllTasks(date);
+    let newDate = new Date(date).toLocaleDateString();
+    let newTasks = tasks.filter((task) => new Date(task.id).toLocaleDateString() === newDate);
+    setTasks(newTasks);
     setDate(date);
   };
 
@@ -49,7 +54,7 @@ const DoneList = () => {
         const newTask = { title: task, id: Date.now() };
         setTasks([...tasks, newTask]);
         setTask("");
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+        localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
       } else {
         const newTask = await createTaskAPI(task, date);
         setTasks([...tasks, newTask]);
@@ -64,8 +69,9 @@ const DoneList = () => {
   const deleteTask = async (e, id) => {
     const token = localStorage.getItem("token");
     if(token === "guest") {
-      let newTasks = tasks.filter(({ _id: i }) => id !== i);
-      setTasks(newTasks);
+      let deletedTasks = tasks.filter(({ id: i }) => id !== i);
+      setTasks(deletedTasks);
+      localStorage.setItem("tasks", JSON.stringify(deletedTasks));
     } else {
       try {
         e.stopPropagation();
