@@ -29,41 +29,51 @@ const DoneList = () => {
       });
   };
 
-  const getAllTasksGuest = () => {
+  const getAllTasksGuest = (date = Date.now()) => {
       const savedTasks = localStorage.getItem("tasks");
-      if (savedTasks) {
-        setTasks(JSON.parse(savedTasks));
-      } else {
-        return [];
-      }
+      console.log("Local Storage Content:", localStorage.getItem("tasks"));
+      const allTasks = JSON.parse(savedTasks) || [];
+      console.log("All tasks from local storage:", allTasks);
+      const targetDate = new Date(date).toLocaleDateString();
+      const tasksForDate = allTasks.filter(task => new Date(task.date).toLocaleDateString() === targetDate);
+      return Promise.resolve(tasksForDate).then((tasks) => {
+        setTasks(tasks);
+      });
   };
 
-  const dateChanged = (date) => {
-    let newDate = new Date(date).toLocaleDateString();
-    let newTasks = tasks.filter((task) => new Date(task.id).toLocaleDateString() === newDate);
-    setTasks(newTasks);
-    setDate(date);
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Ensure zero-padding
+    const day = String(date.getDate()).padStart(2, '0'); // Ensure zero-padding
+    return `${day}/${month}/${year}`;
   };
 
   const createTask = async (e) => {
     e.preventDefault();
-   
+  
     if (task) {
       const token = localStorage.getItem("token");
       if(token === "guest") {
-        const newTask = { title: task, id: Date.now() };
-        setTasks([...tasks, newTask]);
+        // Create a new task object with title, date, and id
+        const newTask = { title: task, date: date, id: Date.now() };
+
+        // Update state with the new task
+        setTasks((prevTasks) => [...prevTasks, newTask]);
+
+        // Clear the task input
         setTask("");
-        localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
-      } else {
-        const newTask = await createTaskAPI(task, date);
-        setTasks([...tasks, newTask]);
-        setTask("");
-      }
+
+        // Update local storage with the new tasks
+      const updatedTasks = [...tasks, newTask];
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    } else {
+      const newTask = await createTaskAPI(task, date);
+      setTasks([...tasks, newTask]);
+      setTask("");
+    }
     } else {
       return;
     }
-
   };
 
   const deleteTask = async (e, id) => {
@@ -100,6 +110,18 @@ const DoneList = () => {
         const updatedTask = await updateTaskAPI(id, newTask);
         setTasks(tasks.map((task) => (task._id === id ? updatedTask : task)));
       }
+    }
+  };
+
+  const dateChanged = async (date) => {
+    try {
+      getAllTasksGuest(date);
+      setDate(date);
+  
+      // Resolve the Promise with the filtered tasks
+    } catch (error) {
+      console.error("Error in dateChanged function:", error);
+      return Promise.reject(error);
     }
   };
   return (
