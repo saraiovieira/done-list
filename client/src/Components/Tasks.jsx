@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdEdit } from "react-icons/md";
 import { BsFillTrashFill } from "react-icons/bs";
 
 const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => { 
-    const [newTask, setNewTask] = useState("");
+    const [guest, setGuest] = useState();
    
-    const [editId, setEdit] = useState(false);    
+    const [editId, setEdit] = useState(false);
+
+    useEffect(() => {
+        getToken();
+      }, []);
+
+    const getToken = () => {
+        const token = localStorage.getItem("token");
+        if(token === "guest") {
+            setGuest(true);
+        }
+    }
 
     const editTask = (e) => {
         e.preventDefault();
@@ -17,22 +28,22 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => 
         <div>
             <h2 className="tasks__title">Congrats! You accomplished ? tasks</h2>
             <ul className="tasks_list">
-                {tasks.map(({ _id, task, completed}, i) => (
+               {tasks.map(({title, id}) => (
                     <li
-                        key={i}
+                        key={id}
                     >
                     <input 
                         id="task-complete" 
                         type="checkbox" 
                         defaultChecked={true} 
-                        onClick={e => updateTask(e, _id)}
-                        className={completed ? "completed" : ""}
+                        onClick={e => updateTask(e, id)}
+                        className="completed"
                     />
                     <span className="checkmark"></span>
-                    <span className='task'>{task}</span>
+                    <span className='task'>{title}</span>
                     <div>
                         <MdEdit className="edit_icon" onClick={editTask}></MdEdit>
-                        <BsFillTrashFill className="trash_icon" onClick={e => deleteTask(e, _id)}></BsFillTrashFill>
+                        <BsFillTrashFill className="trash_icon" onClick={e => deleteTask(e,id)}></BsFillTrashFill>
                     </div>
                     </li>
                 ))}
