@@ -30,22 +30,11 @@ const DoneList = () => {
   };
 
   const getAllTasksGuest = (date = Date.now()) => {
+      const targetDate = date;
       const savedTasks = localStorage.getItem("tasks");
-      console.log("Local Storage Content:", localStorage.getItem("tasks"));
-      const allTasks = JSON.parse(savedTasks) || [];
-      console.log("All tasks from local storage:", allTasks);
-      const targetDate = new Date(date).toLocaleDateString();
-      const tasksForDate = allTasks.filter(task => new Date(task.date).toLocaleDateString() === targetDate);
-      return Promise.resolve(tasksForDate).then((tasks) => {
-        setTasks(tasks);
-      });
-  };
-
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Ensure zero-padding
-    const day = String(date.getDate()).padStart(2, '0'); // Ensure zero-padding
-    return `${day}/${month}/${year}`;
+      const allTasks = JSON.parse(savedTasks);
+      const tasksForDate = allTasks.filter(task => task.date === targetDate);
+      setTasks(tasksForDate);
   };
 
   const createTask = async (e) => {
@@ -54,18 +43,17 @@ const DoneList = () => {
     if (task) {
       const token = localStorage.getItem("token");
       if(token === "guest") {
-        // Create a new task object with title, date, and id
         const newTask = { title: task, date: date, id: Date.now() };
-
-        // Update state with the new task
+        
         setTasks((prevTasks) => [...prevTasks, newTask]);
 
-        // Clear the task input
         setTask("");
 
-        // Update local storage with the new tasks
-      const updatedTasks = [...tasks, newTask];
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+        const savedTasks = localStorage.getItem("tasks");
+        const allTasks = savedTasks ? JSON.parse(savedTasks) : [];
+
+        const updatedTasks = [...allTasks, newTask];
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     } else {
       const newTask = await createTaskAPI(task, date);
       setTasks([...tasks, newTask]);
@@ -113,16 +101,10 @@ const DoneList = () => {
     }
   };
 
+
   const dateChanged = async (date) => {
-    try {
-      getAllTasksGuest(date);
-      setDate(date);
-  
-      // Resolve the Promise with the filtered tasks
-    } catch (error) {
-      console.error("Error in dateChanged function:", error);
-      return Promise.reject(error);
-    }
+    getAllTasksGuest(date);
+    setDate(date);  
   };
   return (
     <>
