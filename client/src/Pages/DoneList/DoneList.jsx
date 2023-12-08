@@ -13,6 +13,8 @@ const DoneList = () => {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
   const [date, setDate] = useState(new Date());
+  const [editedTask, setEditedTask] = useState(null);
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,7 +34,7 @@ const DoneList = () => {
   const getAllTasksGuest = (date = Date.now()) => {
       const targetDate = date;
       const savedTasks = localStorage.getItem("tasks");
-      const allTasks = JSON.parse(savedTasks);
+      const allTasks = JSON.parse(savedTasks) || [];
       const tasksForDate = allTasks.filter(task => task.date === targetDate);
       setTasks(tasksForDate);
   };
@@ -80,12 +82,20 @@ const DoneList = () => {
   };
 
   const updateTask = async (e, id) => {
-    e.stopPropagation();
-    e.preventDefault();
+
     const token = localStorage.getItem("token");
     if(token === "guest") {
-      let newTasks = tasks.filter(({ _id: i }) => id !== i);
-      setTasks(newTasks);
+      if (editedTask) {
+        const updatedTasks = tasks.map((task) =>
+          task.id === editedTask.id ? editedTask : task
+        );
+  
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+          
+        setTasks(updatedTasks);
+  
+        setEditedTask(null);
+      }
     } else {
       try {
         e.stopPropagation();
@@ -117,6 +127,8 @@ const DoneList = () => {
           tasks={tasks}
           updateTask={updateTask}
           deleteTask={deleteTask}
+          editedTask={editedTask}
+          setEditedTask={setEditedTask}
         />
     </div>
     </>

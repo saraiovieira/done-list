@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { MdEdit } from "react-icons/md";
 import { BsFillTrashFill } from "react-icons/bs";
 
-const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => { 
+const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, editedTask, setEditedTask }) => { 
     const [guest, setGuest] = useState();
    
-    const [editId, setEdit] = useState(false);
 
     useEffect(() => {
         getToken();
@@ -18,10 +17,10 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => 
         }
     }
 
-    const editTask = (e) => {
-        e.preventDefault();
-        setEdit(true);
-    }
+    const editTask = (id) => {
+        const taskToEdit = tasks.find((t) => t.id === id);
+        setEditedTask(taskToEdit);
+      };
 
     return (
         <>
@@ -32,17 +31,32 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask }) => 
                     <li
                         key={id}
                     >
-                    <input 
-                        id="task-complete" 
-                        type="checkbox" 
-                        defaultChecked={true} 
-                        onClick={e => updateTask(e, id)}
-                        className="completed"
-                    />
-                    <span className="checkmark"></span>
-                    <span className='task'>{title}</span>
+                    {editedTask && editedTask.id === id ? (
+                        <div>
+                            <input
+                                type="text"
+                                value={editedTask.title}
+                                className="edited"
+                                placeholder='Task name'
+                                autoComplete="off"
+                                onChange={(e) => setEditedTask({ ...editedTask, title: e.target.value })}
+                            />
+                            <button onClick={() => updateTask(editedTask.id)}>Save</button>
+                        </div>
+                    ) : (
+                        <>
+                            <input 
+                            id="task-complete" 
+                            type="checkbox" 
+                            defaultChecked={true} 
+                            className="completed"
+                            />
+                            <span className="checkmark"></span>
+                            <span className="task">{title}</span>
+                        </>
+                        )}               
                     <div>
-                        <MdEdit className="edit_icon" onClick={editTask}></MdEdit>
+                        <MdEdit className="edit_icon" onClick={() => editTask(id)} />
                         <BsFillTrashFill className="trash_icon" onClick={e => deleteTask(e,id)}></BsFillTrashFill>
                     </div>
                     </li>
