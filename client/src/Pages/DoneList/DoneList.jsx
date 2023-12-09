@@ -35,7 +35,7 @@ const DoneList = () => {
       const targetDate = date;
       const savedTasks = localStorage.getItem("tasks");
       const allTasks = JSON.parse(savedTasks) || [];
-      const tasksForDate = allTasks.filter(task => task.date === targetDate);
+      const tasksForDate = allTasks.filter((task)=> task.date === targetDate);
       setTasks(tasksForDate);
   };
 
@@ -86,15 +86,21 @@ const DoneList = () => {
     const token = localStorage.getItem("token");
     if(token === "guest") {
       if (editedTask) {
-        const updatedTasks = tasks.map((task) =>
-          task.id === editedTask.id ? editedTask : task
-        );
-  
-        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-          
-        setTasks(updatedTasks);
-  
-        setEditedTask(null);
+        setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === editedTask.id ? { ...task, title: editedTask.title } : task
+        )
+      );
+      setEditedTask(null);
+
+      const savedTasks = localStorage.getItem("tasks");
+      const allTasks = JSON.parse(savedTasks) || [];
+
+      const updatedTasks = allTasks.map((task) =>
+        task.id === editedTask.id ? { ...task, title: editedTask.title } : task
+      );
+
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
       }
     } else {
       try {
