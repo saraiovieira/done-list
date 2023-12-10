@@ -30,17 +30,18 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
         <>
             <div>
                 <h2 className="tasks__title">Congrats! You accomplished ? tasks</h2>
-                <ul className="tasks_list">
+                <ul className="tasks__list">
                     {guest ? (tasks.map(({ title, id }) => (
                         <li
                             key={id}
+                            className="tasks__item"
                         >
                             {editedTask && editedTask.id === id ? (
                                 <div>
                                     <input
                                         type="text"
                                         value={editedTask.title}
-                                        className="edited"
+                                        className="tasks__input-edited"
                                         placeholder='Task name'
                                         autoComplete="off"
                                         onChange={(e) => setEditedTask({ ...editedTask, title: e.target.value })}
@@ -53,27 +54,28 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
                                         id="task-complete"
                                         type="checkbox"
                                         defaultChecked={true}
-                                        className="completed"
+                                        className="tasks__input-completed"
                                     />
-                                    <span className="checkmark"></span>
-                                    <span className="task">{title}</span>
+                                    <span className="tasks__checkmark"></span>
+                                    <span className="tasks__task">{title}</span>
                                 </>
                             )}
                             <div>
-                                <MdEdit className="edit_icon" onClick={() => editTask(id)} />
-                                <BsFillTrashFill className="trash_icon" onClick={e => deleteTask(e, id)}></BsFillTrashFill>
+                                <MdEdit className="tasks__edit-icon" onClick={() => editTask(id)} />
+                                <BsFillTrashFill className="tasks__trash-icon" onClick={e => deleteTask(e, id)}></BsFillTrashFill>
                             </div>
                         </li>
                     ))) : (tasks.map(({ _id, task }, i) => (
                         <li
                             key={i}
+                            className="tasks__item"
                         >
                             {editedTask && editedTask._id === _id ? (
                                 <div>
                                     <input
                                         type="text"
                                         value={editedTask.task}
-                                        className="edited"
+                                        className="tasks__input-edited"
                                         placeholder='Task name'
                                         autoComplete="off"
                                         onChange={(e) => setEditedTask({ ...editedTask, task: e.target.value })}
@@ -87,18 +89,20 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
                                         type="checkbox"
                                         defaultChecked={true}
                                         onClick={(e) => updateTask(e, _id)}
-                                        className={"completed"}
+                                        className="tasks__input-completed"
                                     />
-                                    <span className="checkmark"></span>
-                                    <span className='task'>{task}</span>
+                                    <span className="tasks__checkmark"></span>
+                                    <span className='tasks__task'>{task}</span>
                                 </>
                             )}
-                            <MdEdit className="edit_icon" onClick={() => editTask(_id)}></MdEdit>
-                            <BsFillTrashFill className="trash_icon" onClick={e => deleteTask(e, _id)}></BsFillTrashFill>
+                            <div>
+                                <MdEdit className="tasks__edit-icon" onClick={() => editTask(_id)}></MdEdit>
+                                <BsFillTrashFill className="tasks__trash-icon" onClick={e => deleteTask(e, _id)}></BsFillTrashFill>
+                            </div>
                         </li>
                     )))}
                 </ul>
-                <form className="add-tasks" onSubmit={createTask}>
+                <form className="tasks__add-form" onSubmit={createTask}>
                     <input
                         type="text"
                         id="new-task-input"
@@ -106,8 +110,9 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
                         onChange={({ target }) => setTask(target.value)}
                         placeholder='Task name'
                         autoComplete="off"
+                        className="tasks__input"
                     />
-                    <button type="submit">
+                    <button type="submit" className="tasks__button">
                         Add task
                     </button>
                 </form>

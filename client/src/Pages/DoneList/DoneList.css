@@ -1,3 +1,4 @@
+/* General Styles */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
 * {
@@ -7,7 +8,8 @@
     padding: 0;
 }
 
-.done__header {
+/* Header Styles */
+.done-header {
     padding: 10px;
     gap: 15px;
     justify-content: space-between;
@@ -15,27 +17,40 @@
     display: flex;
 }
 
-.logo_container {
+/* Logo Container Styles */
+.done-header__logo-container {
     display: flex;
     align-items: center;
 }
 
-.logout {
+.done-header__logo {
+    width: 30px;
+    height: 39px;
+    padding-right: 5px;
+}
+
+.done-header__main-title {
+    font-size: 1em;
+}
+
+.done-header__logout-icon {
     color: rgb(213, 18, 18);
 }
 
-.logout-button {
+.done-header__logout-button {
     display: none;
 }
 
-.list-container {
+/* Done List Container Styles */
+.done-list__container {
     display: flex;
     justify-content: center;
 }
 
+/* Tasks Styles */
 
-
-form, .tasks_list {
+form,
+.tasks__list {
     display: flex;
     justify-content: center;
 }
@@ -49,25 +64,29 @@ form, .tasks_list {
     font-size: 28px;
 }
 
-.add-tasks{
+.tasks__add-form {
+    display: flex;
     padding-top: 20px;
     gap: 15px;
 }
 
-.tasks_list {
+.tasks__list {
     list-style: none;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.tasks_list li {
+/* Task Item Styles */
+.tasks__item {
     position: relative;
     display: flex;
     justify-content: space-between;
 }
 
-.tasks_list .edited {
+/* Input Styles */
+.tasks__input-edited,
+.tasks__input {
     width: 100%;
     margin-bottom: 15px;
     padding: 8px;
@@ -76,7 +95,8 @@ form, .tasks_list {
     border: solid 1px #B7B7B7;
 }
 
-.tasks_list .completed  {
+/* Completed Task Styles */
+.tasks__input-completed {
     cursor: pointer;
     position: absolute;
     opacity: 0;
@@ -85,7 +105,7 @@ form, .tasks_list {
     width: 0;
 }
 
-.checkmark {
+.tasks__checkmark {
     position: absolute;
     top: 0;
     left: 0px;
@@ -95,17 +115,17 @@ form, .tasks_list {
     background-color: #006212;
 }
 
-.checkmark:after {
+.tasks__checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-.tasks_list input:checked ~ .checkmark:after {
+.tasks__list input:checked~.tasks__checkmark:after {
     display: block;
 }
 
-.tasks_list .checkmark:after {
+.tasks__list .tasks__checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;
@@ -116,33 +136,22 @@ form, .tasks_list {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-  
-.task {
+
+/* Task Text Styles */
+.tasks__task {
     margin-left: 45px;
 }
 
-.edit_icon {
+/* Icon Styles */
+.tasks__edit-icon,
+.tasks__trash-icon {
     margin-left: 45px;
     color: #006212;
     cursor: pointer;
 }
 
-.trash_icon {
-    margin-left: 10px;
-    color: #006212;
-    cursor: pointer;
-}
-
-.add-tasks input {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 8px;
-    border-radius: 5px;
-    background-color: #F2F2F2;
-    border: solid 1px #B7B7B7;
-}
-
-.add-tasks button {
+/* Button Styles */
+.tasks__button {
     background-color: #006212;
     border: none;
     margin-bottom: 15px;
@@ -153,8 +162,9 @@ form, .tasks_list {
     font-size: 16px;
 }
 
-@media (min-width:641px) {
-    .logout-button {
+/* Media Query for Larger Screens */
+@media (min-width: 641px) {
+    .done-header__logout-button {
         position: absolute;
         right: 20px;
         width: unset;
@@ -164,7 +174,7 @@ form, .tasks_list {
         padding: 5px 55px;
     }
 
-    .logout {
+    .done-header__logout-icon {
         display: none;
     }
 }

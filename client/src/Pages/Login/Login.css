@@ -1,5 +1,7 @@
+/* Import Google Fonts - Roboto Slab */
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
 
+/* Global Styles */
 * {
   box-sizing: border-box;
   font-family: "Roboto Slab", sans-serif;
@@ -7,13 +9,15 @@
   padding: 0;
 }
 
-.login__second-section {
+/* Login Section Styles */
+.login {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2.5em 1.5em 1.5em 1.5em;
 }
 
+/* Form Section Styles */
 .login__form-section {
   display: flex;
   flex-direction: column;
@@ -22,6 +26,7 @@
   width: 100%;
 }
 
+/* Form Title Styles */
 .login__form-title {
   width: 95%;
   text-align: center;
@@ -31,6 +36,7 @@
   padding-top: 11px;
 }
 
+/* Guest Section Styles */
 .login__guest-section {
   display: flex;
   flex-direction: column;
@@ -39,36 +45,43 @@
   width: 100%;
 }
 
+/* Guest Title Styles */
 .login__guest-title {
   margin: 2em 0 1em 0;
 }
 
+/* Guest Button Styles */
 .login__guest-button {
   margin-bottom: 2.5em;
 }
 
-.divider {
+/* Divider Styles */
+.login__divider {
   border-top: 1px solid #B7B7B7;
   width: 80%;
   margin: 0 auto;
 }
 
+/* Email Title Styles */
 .login__email-title {
   margin: 1.5em 0 1em 0;
 }
 
+/* Form Styles */
 .login__form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
+/* Label Styles */
 .login__label {
   color: #5B5B5B;
   font-size: 14px;
   margin-bottom: 5px;
 }
 
+/* Input Styles */
 .login__input {
   width: 100%;
   margin-bottom: 15px;
@@ -78,17 +91,19 @@
   border: solid 1px #B7B7B7;
 }
 
-
+/* Input Error Styles */
 .login__input-error {
   border: solid 1px #A52727;
 }
 
-.error {
+/* Error Message Styles */
+.login__error {
   color: #A52727;
   margin-bottom: 10px;
 }
 
-.error::before {
+/* Error Icon Styles */
+.login__error::before {
   font-weight: 900;
   width: 15px;
   height: 15px;
@@ -96,10 +111,12 @@
   content: "\58";
 }
 
+/* Button Container Styles */
 .login__button-container {
   margin-top: 10px;
 }
 
+/* Button Styles */
 .login__button {
   margin-bottom: 10px;
   background-color: #006212;
@@ -117,11 +134,8 @@
   align-items: center;
 }
 
-@media (min-width:641px) {
-
-}
-
-@media (min-width:961px)  {
+/* Media Query for Larger Screens */
+@media (min-width: 961px)  {
   .login__form-section {
     justify-content: baseline;
     align-items: baseline;
@@ -133,7 +147,7 @@
     width: auto;
   }
 
-  .divider {
+  .login__divider {
     border-top: 1px solid #B7B7B7;
     width: unset;
     margin: 7em;

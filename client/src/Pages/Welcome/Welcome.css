@@ -1,5 +1,7 @@
+/* Reset and global styles */
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
 
+/* Apply global styles to all elements */
 * {
   box-sizing: border-box;
   font-family: "Roboto Slab", sans-serif;
@@ -7,48 +9,7 @@
   padding: 0;
 }
 
-header,
-.welcome__article {
-  background-color: #7bed8d;
-}
-
-.main__header {
-  display: flex;
-  align-items: center;
-  padding: .5em;
-}
-
-.logo {
-  width: 30px;
-  height: 39px;
-  padding-right: 5px;
-}
-
-.main__title {
-  font-size: 1em;
-}
-
-.welcome__article {
-  display: flex;
-  flex-direction: column;
-  gap: .5em;
-  text-align: center;
-  padding: 0 1.5em 1.5em 1.5em;
-}
-
-.welcome__bold-paragraph {
-  font-weight: bold;
-  font-size: 1.6em;
-  line-height: 1.5em;
-  padding-bottom: .3em;
-}
-
-.welcome__middle-paragraph {
-  font-size: 1.1em;
-  line-height: 1.5em;
-  padding-bottom: .2em;
-}
-
+/* Button styles */
 button {
   margin-bottom: 10px;
   background-color: #006212;
@@ -66,6 +27,51 @@ button {
   align-items: center;
 }
 
+/* Header and welcome article styles */
+header, .welcome__article {
+  background-color: #7bed8d;
+}
+
+/* Main header styles */
+.main-header {
+  display: flex;
+  align-items: center;
+  padding: .5em;
+}
+
+.main-header__logo {
+  width: 30px;
+  height: 39px;
+  padding-right: 5px;
+}
+
+.main-header__title {
+  font-size: 1em;
+}
+
+/* Welcome article styles */
+.welcome__article {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  text-align: center;
+  padding: 0 1.5em 1.5em 1.5em;
+}
+
+.welcome__paragraph--bold {
+  font-weight: bold;
+  font-size: 1.6em;
+  line-height: 1.5em;
+  padding-bottom: .3em;
+}
+
+.welcome__paragraph--middle {
+  font-size: 1.1em;
+  line-height: 1.5em;
+  padding-bottom: .2em;
+}
+
+/* Button styles */
 .welcome__button {
   flex-direction: row;
   justify-content: space-between;
@@ -79,10 +85,12 @@ button {
   background-color: #022809;
 }
 
+/* Blink animation styles */
 .blink {
   animation: blink 2s linear infinite;
 }
 
+/* Keyframes for the blink effect */
 @keyframes blink {
   25% {
     opacity: 1;
@@ -97,6 +105,7 @@ button {
   }
 }
 
+/* Image container styles */
 .welcome__img-container {
   display: flex;
   justify-content: center;
@@ -107,6 +116,7 @@ button {
   width: 80%;
 }
 
+/* Media queries for responsiveness */
 @media (min-width:641px) {
   .welcome__article {
     align-items: center;
@@ -132,7 +142,6 @@ button {
 }
 
 @media (min-width:961px)  {
-
   .welcome {
     display: flex;
   }

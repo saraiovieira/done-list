@@ -106,7 +106,7 @@ const DoneList = () => {
       try {
         e.stopPropagation();
         const updatedTask = await updateTaskAPI(id,  editedTask.task );
-        
+
         setTasks((prevTasks) =>
           prevTasks.map((task) =>
             task._id === id ? { ...task, task: updatedTask.task } : task
@@ -134,7 +134,7 @@ const DoneList = () => {
 
   return (
     <>
-      <div className="list-container">
+      <div className="done-list__container">
         <CalendarDate dateChanged={dateChanged} />
         <Tasks
           task={task}

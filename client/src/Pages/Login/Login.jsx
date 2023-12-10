@@ -4,7 +4,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { validEmail, validPassword } from "../../Validation/Validation";
 
-const Home = () => {
+const Login = () => {
   let navigate = useNavigate();
   const apiPort = process.env.REACT_APP_API_PORT;
   const [email, setEmail] = useState("");
@@ -42,7 +42,7 @@ const Home = () => {
   const handleRedirect = (e) => {
     const token = "guest";
     localStorage.setItem("token", token);
-    navigate("/donelist")
+    navigate("/donelist");
   }
 
   const handleLogin = async (e) => {
@@ -104,59 +104,62 @@ const Home = () => {
 
   return (
     <>
-      <div className="login__second-section">
-          <h2 className="login__form-title">Ready to start accomplishing? </h2>
-          <div className="login__choose-section">
-            <div className="login__guest-section">
-              <h3 className="login__guest-title">Enter as a guest</h3>
-              <button
-                className="login__guest-button"
-                type="button"
-                onClick={handleRedirect}
-              >
-                Enter
-              </button>
-            </div>
-            <hr className="divider"/>
-            <div className="login__form-section">
-              <h3 className="login__email-title">Enter with email</h3>
-              <form className="login__form">
-                <label className="login__label" htmlFor="email">
-                  E-mail
-                </label>
-                <input
-                  className={emailError ? "login__input login__input-error" : "login__input"}
-                  type="text"
-                  name="Email"
-                  id="email"
-                  value={email}
-                  onChange={({ target }) => setEmail(target.value)}
-                  placeholder="Enter your email..."
-                  required
-                />
-                {emailError && <p className="error">{emailError}</p>}
-                <label className="login__label" htmlFor="password">
-                  Password
-                </label>
-                <input
-                  className={passwordError ? "login__input login__input-error" : "login__input"}
-                  type="password"
-                  name="Password"
-                  id="password"
-                  value={password}
-                  onChange={({ target }) => setPassword(target.value)}
-                  placeholder="Enter your password..."
-                  aria-label="password"
-                  required
-                />
-                {passwordError && <p className="error">{passwordError}</p>}
-                {registered === true ? <button
-                    className="login__button"
-                    type="button"
-                    onClick={handleLogin}
-                  >
-                    Login
-                  </button> : <div className="login__button-container">
+      <div className="login">
+        <h2 className="login__form-title">Ready to start accomplishing? </h2>
+        <div className="login__choose-section">
+          <div className="login__guest-section">
+            <h3 className="login__guest-title">Enter as a guest</h3>
+            <button
+              className="login__guest-button"
+              type="button"
+              onClick={handleRedirect}
+            >
+              Enter
+            </button>
+          </div>
+          <hr className="login__divider" />
+          <div className="login__form-section">
+            <h3 className="login__email-title">Enter with email</h3>
+            <form className="login__form">
+              <label className="login__label" htmlFor="email">
+                E-mail
+              </label>
+              <input
+                className={emailError ? "login__input login__input--error" : "login__input"}
+                type="text"
+                name="Email"
+                id="email"
+                value={email}
+                onChange={({ target }) => setEmail(target.value)}
+                placeholder="Enter your email..."
+                required
+              />
+              {emailError && <p className="login__error">{emailError}</p>}
+              <label className="login__label" htmlFor="password">
+                Password
+              </label>
+              <input
+                className={passwordError ? "login__input login__input--error" : "login__input"}
+                type="password"
+                name="Password"
+                id="password"
+                value={password}
+                onChange={({ target }) => setPassword(target.value)}
+                placeholder="Enter your password..."
+                aria-label="password"
+                required
+              />
+              {passwordError && <p className="login__error">{passwordError}</p>}
+              {registered === true ? (
+                <button
+                  className="login__button"
+                  type="button"
+                  onClick={handleLogin}
+                >
+                  Login
+                </button>
+              ) : (
+                <div className="login__button-container">
                   <button
                     className="login__button"
                     type="button"
@@ -164,10 +167,16 @@ const Home = () => {
                   >
                     Signup
                   </button>
-                </div>}
-                {errorMessage && <p className="error">{errorMessage}</p>}
-                {forgotPassword && <p>Forgot password? Click <a href="/login">here</a> to register again</p>}
-              </form>
+                </div>
+              )}
+              {errorMessage && <p className="login__error">{errorMessage}</p>}
+              {forgotPassword && (
+                <p>
+                  Forgot password? Click <a href="/login">here</a> to register
+                  again
+                </p>
+              )}
+            </form>
           </div>
         </div>
       </div>
@@ -175,4 +184,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Login;

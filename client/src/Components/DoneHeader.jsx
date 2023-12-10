@@ -10,13 +10,13 @@ const DoneHeader = () => {
   };
 
   return (
-    <header className="done__header">
-      <div className="logo_container">
-        <img className="logo" src={Logo} alt="Done list logo" />
-        <h1 className="main__title"> Your Done List </h1>
+    <header className="done-header">
+      <div className="done-header__logo-container">
+        <img className="done-header__logo" src={Logo} alt="Done list logo" />
+        <h1 className="done-header__main-title"> Your Done List </h1>
       </div>
-      <FontAwesomeIcon className="logout" icon={faRightFromBracket} onClick={logOut} />
-      <button className="logout-button" type="button" onClick={logOut}>
+      <FontAwesomeIcon className="done-header__logout-icon" icon={faRightFromBracket} onClick={logOut} />
+      <button className="done-header__logout-button" type="button" onClick={logOut}>
         Log out
       </button>
     </header>
