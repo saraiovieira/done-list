@@ -10,11 +10,6 @@ const taskSchema = new mongoose.Schema({
     unique: false,
     required: true,
   },
-  completed: {
-    type: Boolean,
-    default: true,
-    required: false,
-  },
   createdAt: {
     type: String,
     required: true,

@@ -1,4 +1,4 @@
-import { Task } from "../models/Task.js";
+import { Task } from "../models/task.js";
 
 function success(res, payload) {
   return res.status(200).json(payload);
@@ -13,7 +13,6 @@ export const createTask = async (req, res) => {
     const task = await Task.create({
       user_id: req.user.user_id,
       task: req.body.task,
-      completed: req.body.completed,
       createdAt: TimestampToDate(req.body.date),
     });
     return success(res, task);
