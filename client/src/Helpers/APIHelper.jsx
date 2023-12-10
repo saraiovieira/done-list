@@ -27,8 +27,8 @@ async function deleteTaskAPI(id) {
 }
 
 async function updateTaskAPI(id, task) {
-  const { data: newTask } = await AxiosInstance.put(`${API_URL}${id}`,{task})
-  return newTask;
+    const  { data: newTask } = await AxiosInstance.put(`${API_URL}${id}`, { task });
+    return newTask;
 }
 
 async function getAllTasksAPI(date) {

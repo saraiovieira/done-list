@@ -105,14 +105,17 @@ const DoneList = () => {
     } else {
       try {
         e.stopPropagation();
-        await deleteTaskAPI(id);
-        setTasks(tasks.filter(({ _id: i }) => id !== i));
+        const updatedTask = await updateTaskAPI(id,  editedTask.task );
+        
+        setTasks((prevTasks) =>
+          prevTasks.map((task) =>
+            task._id === id ? { ...task, task: updatedTask.task } : task
+          )
+        );
+
+        setEditedTask(null);
       } catch (err) {
-        const newTask = {
-          changed: !tasks.find((task) => task._id === id).changed,
-        };
-        const updatedTask = await updateTaskAPI(id, newTask);
-        setTasks(tasks.map((task) => (task._id === id ? updatedTask : task)));
+        console.error("Error updating task:", err);
       }
     }
   };
