@@ -26,10 +26,12 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
         }
     };
 
+    const taskCount = tasks.length;
+
     return (
         <>
             <div>
-                <h2 className="tasks__title">Congrats! You accomplished ? tasks</h2>
+                <h2 className="tasks__title">Congrats! You accomplished {taskCount} tasks</h2>
                 <ul className="tasks__list">
                     {guest ? (tasks.map(({ title, id }) => (
                         <li
