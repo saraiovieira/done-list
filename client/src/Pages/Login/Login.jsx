@@ -14,14 +14,14 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [registered, setRegistered] = useState(false);
-  const [forgotPassword, setForgotPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [loginView, setLoginView] = useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  let validateEmail = (email) => {
+  const validateEmail = (email) => {
     let isEmailValid = { status: true, emailError: "" };
     if (!email) {
       isEmailValid.status = false;
@@ -64,6 +64,7 @@ const Login = () => {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
     setEmailError("");
+    setRegistered(false);
   };
 
   const handlePasswordChange = (event) => {
@@ -71,11 +72,11 @@ const Login = () => {
     setPasswordError("");
   };
 
-  const handleRedirect = (e) => {
+  const handleGuestLogin = () => {
     const token = "guest";
     localStorage.setItem("token", token);
     navigate("/donelist");
-  }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -98,7 +99,6 @@ const Login = () => {
       } catch (err) {
         console.log(err);
         setErrorMessage("Invalid Credentials");
-        setForgotPassword(true);
       }
     } else {
       setEmailError(emailIsValid.emailError);
@@ -114,25 +114,41 @@ const Login = () => {
 
     if (emailIsValid.status && passwordIsValid.status) {
       try {
-        await axios
-          .post(`http://localhost:${apiPort}/register/`, {
-            email: email,
-            password: password,
-          })
+        await axios.post(`http://localhost:${apiPort}/register/`, {
+          email: email,
+          password: password,
+        })
           .then((res) => {
             localStorage.setItem("token", res.data.token);
             navigate("/donelist");
           });
       } catch (err) {
         console.log(err);
-        setErrorMessage(`Email: ${email} already exists`);
-        setRegistered(true);
+        if (err.response && err.response.status === 409) {
+          setErrorMessage(`Email: ${email} already exists`);
+          setRegistered(true);
+        } else {
+          setErrorMessage("Registration failed. Please try again later.");
+        }
       }
     } else {
       setEmailError(emailIsValid.emailError);
+      setRegistered(false);
       setPasswordError(passwordIsValid.passwordError);
     }
   };
+
+  const handleEnter = () => {
+    const emailIsValid = validateEmail(email);
+
+    if (emailIsValid.status) {
+      setLoginView(true);
+    } else {
+      setEmailError(emailIsValid.emailError);
+      setRegistered(false);
+    }
+  };
+
 
   return (
     <>
@@ -144,94 +160,120 @@ const Login = () => {
             <button
               className="login__guest-button"
               type="button"
-              onClick={handleRedirect}
+              onClick={handleGuestLogin}
             >
-              Login
+              Enter
             </button>
           </div>
           <hr className="login__divider" />
           <div className="login__form-section">
-            <h3 className="login__email-title">Enter with email</h3>
-            <form className="login__form">
-              <label className="login__label" htmlFor="email">
-                E-mail
-              </label>
-              <input
-                className={emailError ? "login__input login__input--error" : "login__input"}
-                type="text"
-                name="Email"
-                id="email"
-                value={email}
-                onChange={handleEmailChange}
-                placeholder="Enter your email..."
-                required
-              />
-              {emailError && <div className="login__error" role="alert">
-                <span aria-hidden="true" className="login__error-icon">❌</span>
-                {emailError}
-              </div>}
-              <label className="login__label" htmlFor="password">
-                Password
-                <div className="password-input-container">
+            {!loginView && (
+              <>
+                <h3 className="login__email-title">Enter with email</h3>
+                <form className="login__form">
+                  <label className="login__label" htmlFor="email">
+                    E-mail
+                  </label>
                   <input
-                    className={passwordError ? "login__input login__input--error" : "login__input"}
-                    type={showPassword ? "text" : "password"}
-                    name="Password"
-                    id="password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    placeholder="Enter your password..."
-                    aria-label="password"
+                    className={emailError ? "login__input login__input--error" : "login__input"}
+                    type="text"
+                    name="Email"
+                    id="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="Enter your email..."
                     required
                   />
-                  <div
-                    className="password-toggle-icon"
-                    onClick={handleTogglePassword}
-                    role="button"
-                    tabIndex="0"
-                    aria-label={showPassword ? "Hide password" : "Show password"}
-                  >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </div>
-                </div>
-                {passwordError && (
-                  <div className="login__error" role="alert">
+                  {emailError && <div className="login__error" role="alert">
                     <span aria-hidden="true" className="login__error-icon">❌</span>
-                    {passwordError}
-                  </div>
-                )}
-              </label>
-              {passwordError && <div className="login__error" role="alert">
-                <span aria-hidden="true" className="login__error-icon">❌</span>
-                {passwordError}
-              </div>}
-              {registered === true ? (
+                    {emailError}
+                  </div>}
+                </form>
                 <button
-                  className="login__button"
+                  className="login__guest-button"
                   type="button"
-                  onClick={handleLogin}
+                  onClick={handleEnter}
                 >
-                  Login
+                  Enter
                 </button>
-              ) : (
-                <div className="login__button-container">
-                  <button
-                    className="login__button"
-                    type="button"
-                    onClick={handleRegister}
-                  >
-                    Signup
-                  </button>
-                </div>
-              )}
-              {errorMessage && <p className="login__error">{errorMessage}</p>}
-              {forgotPassword && (
-                <p>
-                  Forgot password? Click <a href="/login">here</a> to register
-                  again
-                </p>
-              )}
-            </form>
+              </>
+            )}
+            {loginView && (
+              <>
+                <h3 className="login__email-title">Enter with email</h3>
+                <form className="login__form">
+                  <label className="login__label" htmlFor="email">
+                    E-mail
+                  </label>
+                  <input
+                    className={emailError ? "login__input login__input--error" : "login__input"}
+                    type="text"
+                    name="Email"
+                    id="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="Enter your email..."
+                    required
+                  />
+                  {emailError && <div className="login__error" role="alert">
+                    <span aria-hidden="true" className="login__error-icon">❌</span>
+                    {emailError}
+                  </div>}
+                  <label className="login__label" htmlFor="password">
+                    Password
+                    <div className="password-input-container">
+                      <input
+                        className={passwordError ? "login__input login__input--error" : "login__input"}
+                        type={showPassword ? "text" : "password"}
+                        name="Password"
+                        id="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                        placeholder="Enter your password..."
+                        aria-label="password"
+                        required
+                      />
+                      <div
+                        className="password-toggle-icon"
+                        onClick={handleTogglePassword}
+                        role="button"
+                        tabIndex="0"
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                        title={showPassword ? "Hide password" : "Show password"}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </div>
+                    </div>
+                    {passwordError && (
+                      <div className="login__error" role="alert">
+                        <span aria-hidden="true" className="login__error-icon">❌</span>
+                        {passwordError}
+                      </div>
+                    )}
+                  </label>
+                  {registered ? (
+                    <button
+                      className="login__button"
+                      type="button"
+                      onClick={handleLogin}
+                    >
+                      Login
+                    </button>
+                  ) : (
+                    <div className="login__button-container">
+                      <button
+                        className="login__button"
+                        type="button"
+                        onClick={handleRegister}
+                      >
+                        Signup
+                      </button>
+                    </div>
+                  )}
+                  {errorMessage && <p className="login__error">{errorMessage}</p>}
+                </form>
+              </>
+            )}
           </div>
         </div>
       </div>
