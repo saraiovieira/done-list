@@ -103,12 +103,37 @@
 }
 
 /* Error Icon Styles */
-.login__error::before {
+.login__error-icon {
+  font-family: "Arial", sans-serif;
   font-weight: 900;
   width: 15px;
-  height: 15px;
+  height: 27px;
   margin-right: 5px;
-  content: "\58";
+  content: "❌";
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.login__input {
+  padding-right: 40px;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 42%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-toggle-icon svg {
+  width: 20px;
+  height: auto;
+  fill: #666; 
 }
 
 /* Button Container Styles */

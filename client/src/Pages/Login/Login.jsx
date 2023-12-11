@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { validEmail, validPassword } from "../../Validation/Validation";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -14,15 +15,28 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [registered, setRegistered] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   let validateEmail = (email) => {
     let isEmailValid = { status: true, emailError: "" };
     if (!email) {
       isEmailValid.status = false;
-      isEmailValid.emailError = "Email is required";
+      isEmailValid.emailError = (
+        <>
+          <strong>Email is required.</strong> Please enter a valid email address (e.g., <strong>example@example.com</strong>).
+        </>
+      );
     } else if (!validEmail.test(email)) {
       isEmailValid.status = false;
-      isEmailValid.emailError = "Email is invalid";
+      isEmailValid.emailError = (
+        <>
+          <strong>Email is invalid.</strong> Please enter a valid email address (e.g., <strong>example@example.com</strong>).
+        </>
+      );
     }
     return isEmailValid;
   };
@@ -31,12 +45,30 @@ const Login = () => {
     let isPasswordValid = { status: true, passwordError: "" };
     if (!password) {
       isPasswordValid.status = false;
-      isPasswordValid.passwordError = "Password is required";
+      isPasswordValid.passwordError = (
+        <>
+          <strong>Password is required.</strong> Please enter a password with at least 8 characters, including a mix of letters, numbers, and special characters.
+        </>
+      );
     } else if (!validPassword.test(password)) {
       isPasswordValid.status = false;
-      isPasswordValid.passwordError = "Password is invalid. Your password must have at least 1 letter, 1 number and 6 digits";
+      isPasswordValid.passwordError = (
+        <>
+          <strong>Password is invalid.</strong> Please enter a password with at least 8 characters, including a mix of letters, numbers, and special characters.
+        </>
+      );
     }
     return isPasswordValid;
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setEmailError("");
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    setPasswordError("");
   };
 
   const handleRedirect = (e) => {
@@ -114,7 +146,7 @@ const Login = () => {
               type="button"
               onClick={handleRedirect}
             >
-              Enter
+              Login
             </button>
           </div>
           <hr className="login__divider" />
@@ -130,26 +162,49 @@ const Login = () => {
                 name="Email"
                 id="email"
                 value={email}
-                onChange={({ target }) => setEmail(target.value)}
+                onChange={handleEmailChange}
                 placeholder="Enter your email..."
                 required
               />
-              {emailError && <p className="login__error">{emailError}</p>}
+              {emailError && <div className="login__error" role="alert">
+                <span aria-hidden="true" className="login__error-icon">❌</span>
+                {emailError}
+              </div>}
               <label className="login__label" htmlFor="password">
                 Password
+                <div className="password-input-container">
+                  <input
+                    className={passwordError ? "login__input login__input--error" : "login__input"}
+                    type={showPassword ? "text" : "password"}
+                    name="Password"
+                    id="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    placeholder="Enter your password..."
+                    aria-label="password"
+                    required
+                  />
+                  <div
+                    className="password-toggle-icon"
+                    onClick={handleTogglePassword}
+                    role="button"
+                    tabIndex="0"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </div>
+                </div>
+                {passwordError && (
+                  <div className="login__error" role="alert">
+                    <span aria-hidden="true" className="login__error-icon">❌</span>
+                    {passwordError}
+                  </div>
+                )}
               </label>
-              <input
-                className={passwordError ? "login__input login__input--error" : "login__input"}
-                type="password"
-                name="Password"
-                id="password"
-                value={password}
-                onChange={({ target }) => setPassword(target.value)}
-                placeholder="Enter your password..."
-                aria-label="password"
-                required
-              />
-              {passwordError && <p className="login__error">{passwordError}</p>}
+              {passwordError && <div className="login__error" role="alert">
+                <span aria-hidden="true" className="login__error-icon">❌</span>
+                {passwordError}
+              </div>}
               {registered === true ? (
                 <button
                   className="login__button"
