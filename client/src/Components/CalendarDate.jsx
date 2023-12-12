@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
+import { BsCalendar } from "react-icons/bs"; // Import the calendar icon
 
 const CalendarDate = ({ dateChanged }) => {
   const [date, setDate] = useState(new Date());
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  const handleCalendarToggle = () => {
+    setShowCalendar(!showCalendar);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -16,15 +22,20 @@ const CalendarDate = ({ dateChanged }) => {
 
   return (
     <>
-      <h3 className="calendar_title">Choose a date</h3>
-      <div>
-        <Calendar
-          onChange={setDate}
-          value={date}
-          locale="en"
-          calendarType="ISO 8601"
-        />
-      </div>
+      <button className="calendar-button" onClick={handleCalendarToggle}>
+        <BsCalendar size={20} style={{ marginRight: 5 }} />
+        Change the date   
+        </button>
+      {showCalendar && (
+        <div>
+          <Calendar
+            onChange={setDate}
+            value={date}
+            locale="en"
+            calendarType="ISO 8601"
+          />
+        </div>
+      )}
     </>
   );
 };
