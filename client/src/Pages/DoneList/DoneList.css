@@ -35,6 +35,10 @@
 
 .done-header__logout-icon {
     color: rgb(213, 18, 18);
+    border: 2px solid rgb(213, 18, 18);
+    border-radius: 5px;
+    background-color: #7bed8d;
+    padding: 4px;
 }
 
 .done-header__logout-button {
@@ -44,30 +48,126 @@
 /* Done List Container Styles */
 .done-list__container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Calendar Styles */
+.calendar_title {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #006212;
+    font-size: 20px;
+}
+
+.react-calendar {
+    width: 300px;
+    max-width: 100%;
+    background: #7bed8d;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+    border-radius: 5px;
+}
+
+.react-calendar__navigation {
+    display: flex;
+    height: 44px;
+    margin-bottom: 1em;
+}
+
+.react-calendar__navigation button {
+    min-width: 44px;
+    background: none;
+}
+
+.react-calendar button {
+    margin: 0;
+    border: 0;
+    outline: none;
+}
+
+.react-calendar__navigation__label__labelText--from {
+    color: black;
+}
+
+.react-calendar__navigation__arrow {
+    color: black;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    color: black;
+}
+
+abbr[title] {
+    text-decoration: none !important;
+}
+
+.react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.75em;
+}
+
+.react-calendar__tile {
+    max-width: 100%;
+    padding: 10px 6.6667px;
+    background: none;
+    text-align: center;
+    line-height: 16px;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+    color: #006212 !important;
+}
+
+.react-calendar__month-view__days__day {
+    color: black;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: black;
+}
+
+.react-calendar__tile--now {
+    background: #006212;
+    color: white;
+}
+
+
+.react-calendar__tile--active {
+    color: black;
+    border: solid 2px #006212 !important;
 }
 
 /* Tasks Styles */
-
 form,
 .tasks__list {
     display: flex;
     justify-content: center;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .tasks__title {
     width: 95%;
     text-align: center;
     font-weight: bold;
-    padding-top: 80px;
+    padding-top: 10px;
     color: #006212;
-    font-size: 28px;
+    font-size: 30px;
 }
 
 .tasks__add-form {
     display: flex;
-    padding-top: 20px;
+    align-items: center;
+    padding-top: 5px;
     gap: 15px;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .tasks__list {
@@ -82,6 +182,12 @@ form,
     position: relative;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.tasks__item:hover {
+    background-color: #7bed8d;
 }
 
 /* Input Styles */
@@ -93,6 +199,7 @@ form,
     border-radius: 5px;
     background-color: #F2F2F2;
     border: solid 1px #B7B7B7;
+    font-size: 16px;
 }
 
 /* Completed Task Styles */
@@ -100,7 +207,6 @@ form,
     cursor: pointer;
     position: absolute;
     opacity: 0;
-    cursor: pointer;
     height: 0;
     width: 0;
 }
@@ -123,6 +229,7 @@ form,
 
 .tasks__list input:checked~.tasks__checkmark:after {
     display: block;
+    color: white;
 }
 
 .tasks__list .tasks__checkmark:after {
@@ -139,6 +246,7 @@ form,
 
 /* Task Text Styles */
 .tasks__task {
+    font-size: 16px;
     margin-left: 45px;
 }
 

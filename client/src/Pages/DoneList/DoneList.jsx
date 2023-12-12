@@ -135,8 +135,7 @@ const DoneList = () => {
   return (
     <>
       <div className="done-list__container">
-        <CalendarDate dateChanged={dateChanged} />
-        <Tasks
+      <Tasks
           task={task}
           setTask={setTask}
           createTask={createTask}
@@ -146,6 +145,7 @@ const DoneList = () => {
           editedTask={editedTask}
           setEditedTask={setEditedTask}
         />
+        <CalendarDate dateChanged={dateChanged} />
       </div>
     </>
   );
