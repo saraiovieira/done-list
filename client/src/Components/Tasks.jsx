@@ -4,6 +4,12 @@ import { BsFillTrashFill } from "react-icons/bs";
 
 const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, editedTask, setEditedTask }) => {
     const [guest, setGuest] = useState();
+    const [encouragementMessage, setEncouragementMessage] = useState('');
+
+
+    const handleEncourageClick = () => {
+        setEncouragementMessage("Remember why you started. Align your tasks with your goals.");
+    };
 
     useEffect(() => {
         getToken();
@@ -31,7 +37,22 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
     return (
         <>
             <div>
-                <h2 className="tasks__title">Congrats! You accomplished {taskCount} tasks</h2>
+                {tasks.length === 0 ? (
+                    <div className="tasks__empty-container">
+                        <h2  className="tasks__title">No tasks done yet!</h2>
+                        <p className="tasks__description">Complete a task to make progress.</p>
+                        <button className="tasks__encouragement-button" onClick={handleEncourageClick}>Encourage me!</button>
+                        {encouragementMessage && (
+                            <div className="tasks__encouragement">
+                                <p className="tasks__encouragement-message">{encouragementMessage}</p>
+                                <div className="tasks__encouragement-gif-container">
+                                    <img className="tasks__encouragement-gif" src="/giphy.gif" alt="Encouragement GIF" />
+                                    <p className="tasks__encouragement-source"><a href="https://giphy.com/gifs/Dapulse-celebration-green-l0Iybn1vpbUzeqkqQ">via GIPHY</a></p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ) : (<h2 className="tasks__title">Congrats! You accomplished {taskCount} tasks</h2>)}
                 <ul className="tasks__list">
                     {guest ? (tasks.map(({ title, id }) => (
                         <li

@@ -182,6 +182,34 @@ form,
     flex-direction: column;
 }
 
+.tasks__empty-container,
+.tasks__encouragement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tasks__description {
+    margin: 10px 0;
+}
+
+/* Task Encouragement Styles */
+
+.tasks__encouragement-message {
+    text-align: center;
+}
+
+.tasks__encouragement-gif-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tasks__encouragement-gif {
+    height: 40vh;
+}
+
 /* Task Item Styles */
 .tasks__item {
     position: relative;
@@ -189,6 +217,13 @@ form,
     justify-content: space-between;
     margin-bottom: 1.3em;
     border-radius: 5px;
+    transform: translateY(-20px);
+    transition: transform 0.5s ease-in-out;
+}
+
+
+.tasks__item.slide-in {
+    transform: translateY(0);
 }
 
 .tasks__item:hover {
@@ -242,6 +277,7 @@ form,
 }
 
 @keyframes jump {
+
     0%,
     20%,
     50%,
@@ -249,9 +285,11 @@ form,
     100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-15px);
     }
+
     60% {
         transform: translateY(-10px);
     }
@@ -284,6 +322,10 @@ form,
 }
 
 /* Button Styles */
+.tasks__encouragement-button {
+    width: unset;
+}
+
 .tasks__button {
     background-color: #006212;
     border: none;
