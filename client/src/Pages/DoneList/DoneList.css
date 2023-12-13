@@ -55,7 +55,9 @@
 /* Calendar Styles */
 
 .calendar-button {
-    width: 40%;
+    width: unset;
+    gap: 10px;
+    flex-direction: unset;
 }
 
 .calendar_title {
@@ -168,7 +170,7 @@ form,
 
 .tasks__add-form {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding-top: 5px;
     gap: 15px;
     width: 95%;
@@ -217,13 +219,6 @@ form,
     justify-content: space-between;
     margin-bottom: 1.3em;
     border-radius: 5px;
-    transform: translateY(-20px);
-    transition: transform 0.5s ease-in-out;
-}
-
-
-.tasks__item.slide-in {
-    transform: translateY(0);
 }
 
 .tasks__item:hover {
@@ -324,6 +319,29 @@ form,
 /* Button Styles */
 .tasks__encouragement-button {
     width: unset;
+    gap: 5px;
+    flex-direction: unset;
+}
+
+.tasks__button-mobile {
+    background-color: #006212; /* Adjust the color as needed */
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tasks__button-mobile:hover {
+    background-color: #005109;    /* Adjust the hover color as needed */
 }
 
 .tasks__button {

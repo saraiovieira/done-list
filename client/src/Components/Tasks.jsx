@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { MdEdit } from "react-icons/md";
 import { BsFillTrashFill } from "react-icons/bs";
+import { MdAdd } from 'react-icons/md';
+import { FaLightbulb } from 'react-icons/fa'; // Import the light bulb icon
 
 const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, editedTask, setEditedTask }) => {
     const [guest, setGuest] = useState();
     const [encouragementMessage, setEncouragementMessage] = useState('');
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Adjust the breakpoint as needed
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
 
     const handleEncourageClick = () => {
@@ -39,9 +54,11 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
             <div>
                 {tasks.length === 0 ? (
                     <div className="tasks__empty-container">
-                        <h2  className="tasks__title">No tasks done yet!</h2>
+                        <h2 className="tasks__title">No tasks done yet!</h2>
                         <p className="tasks__description">Complete a task to make progress.</p>
-                        <button className="tasks__encouragement-button" onClick={handleEncourageClick}>Encourage me!</button>
+                        <button className="tasks__encouragement-button" onClick={handleEncourageClick}>
+                        Encourage me!<FaLightbulb className="tasks__encouragement-icon" />
+                        </button>
                         {encouragementMessage && (
                             <div className="tasks__encouragement">
                                 <p className="tasks__encouragement-message">{encouragementMessage}</p>
@@ -135,9 +152,13 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
                         autoComplete="off"
                         className="tasks__input"
                     />
-                    <button type="submit" className="tasks__button">
+                    {isMobile ? (
+                        <button type="button" className="tasks__button-mobile" onClick={createTask}>
+                            <MdAdd />
+                        </button>
+                    ) : (<button type="submit" className="tasks__button">
                         Add task
-                    </button>
+                    </button>)}
                 </form>
             </div>
         </>

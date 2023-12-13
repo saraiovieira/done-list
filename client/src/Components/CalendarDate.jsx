@@ -23,9 +23,9 @@ const CalendarDate = ({ dateChanged }) => {
   return (
     <>
       <button className="calendar-button" onClick={handleCalendarToggle}>
+        Change the date
         <BsCalendar size={20} style={{ marginRight: 5 }} />
-        Change the date   
-        </button>
+      </button>
       {showCalendar && (
         <div>
           <Calendar
