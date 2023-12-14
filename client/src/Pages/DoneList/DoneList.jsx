@@ -62,7 +62,7 @@ const DoneList = () => {
         setTask("");
       }
     } else {
-      return;
+      alert("Task is empty");
     }
   };
 
