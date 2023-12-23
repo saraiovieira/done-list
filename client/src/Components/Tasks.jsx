@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { MdEdit } from "react-icons/md";
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdAdd } from 'react-icons/md';
-import { FaLightbulb } from 'react-icons/fa'; // Import the light bulb icon
+import { FaLightbulb } from 'react-icons/fa';
 
 const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, editedTask, setEditedTask }) => {
     const [guest, setGuest] = useState();
     const [encouragementMessage, setEncouragementMessage] = useState('');
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+            setIsMobile(window.innerWidth <= 768);
         };
 
         window.addEventListener('resize', handleResize);
@@ -51,7 +51,7 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
 
     return (
         <>
-            <div>
+            <div className="tasks_container">
                 {tasks.length === 0 ? (
                     <div className="tasks__empty-container">
                         <h2 className="tasks__title">No tasks done yet!</h2>

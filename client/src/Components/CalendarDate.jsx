@@ -15,9 +15,9 @@ const CalendarDate = ({ dateChanged }) => {
   }, [date]);
 
   return (
-    <>
+    <div className="calendar__main-container">
       <h3 className="calendar_title">Choose a date</h3>
-      <div>
+      <div className="calendar__container">
         <Calendar
           onChange={setDate}
           value={date}
@@ -25,7 +25,7 @@ const CalendarDate = ({ dateChanged }) => {
           calendarType="ISO 8601"
         />
       </div>
-    </>
+    </div>
   );
 };
 
