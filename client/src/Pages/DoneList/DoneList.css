@@ -221,11 +221,6 @@ form,
     border-radius: 5px;
 }
 
-.tasks__item:hover {
-    background-color: #eeecec;
-    padding: 0 10px;
-}
-
 /* Input Styles */
 .tasks__input-edited,
 .tasks__input {
@@ -316,6 +311,12 @@ form,
     cursor: pointer;
 }
 
+.tasks__edit-icon:hover, .tasks__trash-icon:hover {
+    border: 3px solid #005109;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
 /* Button Styles */
 .tasks__encouragement-button {
     width: unset;
@@ -340,7 +341,7 @@ form,
     align-items: center;
 }
 
-.tasks__button-mobile:hover {
+.tasks__button-mobile:hover,  .tasks__button:hover {
     background-color: #005109;
 }
 
@@ -375,7 +376,7 @@ form,
 @media (min-width: 961px) {
     .done-list__container {
         flex-direction: row;
-        height: 100vh;
+        height: 90vh;
         justify-content: space-evenly;
     }
 

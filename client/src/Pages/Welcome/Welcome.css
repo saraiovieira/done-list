@@ -151,6 +151,13 @@ header, .welcome__article {
     justify-content: center;
   }
 
+  .welcome__article-description {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 70%;
+  }
+
   .welcome__bold-paragraph {
     width: 80%;
   }

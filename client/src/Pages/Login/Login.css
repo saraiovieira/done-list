@@ -159,6 +159,10 @@
   align-items: center;
 }
 
+.login__button:hover, .login__guest-button:hover {
+  background-color: #022809;
+}
+
 /* Media Query for Larger Screens */
 @media (min-width: 961px)  {
   .login__form-section {
