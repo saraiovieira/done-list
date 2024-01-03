@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { MdEdit } from "react-icons/md";
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdAdd } from 'react-icons/md';
-import { FaLightbulb } from 'react-icons/fa';
-
 const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, editedTask, setEditedTask }) => {
     const [guest, setGuest] = useState();
-    const [encouragementMessage, setEncouragementMessage] = useState('');
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
@@ -21,10 +18,6 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
         };
     }, []);
 
-
-    const handleEncourageClick = () => {
-        setEncouragementMessage("Remember why you started. Align your tasks with your goals.");
-    };
 
     useEffect(() => {
         getToken();
@@ -56,18 +49,6 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
                     <div className="tasks__empty-container">
                         <h2 className="tasks__title">No tasks done yet!</h2>
                         <p className="tasks__description">Complete a task to make progress.</p>
-                        <button className="tasks__encouragement-button" onClick={handleEncourageClick}>
-                        Encourage me!<FaLightbulb className="tasks__encouragement-icon" />
-                        </button>
-                        {encouragementMessage && (
-                            <div className="tasks__encouragement">
-                                <p className="tasks__encouragement-message">{encouragementMessage}</p>
-                                <div className="tasks__encouragement-gif-container">
-                                    <img className="tasks__encouragement-gif" src="/giphy.gif" alt="Encouragement GIF" />
-                                    <p className="tasks__encouragement-source"><a href="https://giphy.com/gifs/Dapulse-celebration-green-l0Iybn1vpbUzeqkqQ">via GIPHY</a></p>
-                                </div>
-                            </div>
-                        )}
                     </div>
                 ) : (<h2 className="tasks__title">Congrats! You accomplished {taskCount} tasks</h2>)}
                 <ul className="tasks__list">

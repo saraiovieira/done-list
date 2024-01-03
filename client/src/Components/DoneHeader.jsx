@@ -7,7 +7,8 @@ const DoneHeader = () => {
   const logOut = () => {
     localStorage.clear();
     window.location.href = "/";
-  };
+  }
+  
 
   return (
     <header className="done-header">
