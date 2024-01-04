@@ -15,12 +15,9 @@ const DoneList = () => {
   const [date, setDate] = useState(new Date());
   const [editedTask, setEditedTask] = useState(null);
 
-
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token === "guest") {
-      getAllTasksGuest();
-    } else {
+    if (token !== "guest") {
       getAllTasksUser();
     }
   }, []);
