@@ -27,14 +27,16 @@ const Login = () => {
       isEmailValid.status = false;
       isEmailValid.emailError = (
         <>
-          <strong>Email is required.</strong> Please enter a valid email address (e.g., <strong>example@example.com</strong>).
+          <strong>Email is required.</strong> Please enter a valid email address
+          (e.g., <strong>example@example.com</strong>).
         </>
       );
     } else if (!validEmail.test(email)) {
       isEmailValid.status = false;
       isEmailValid.emailError = (
         <>
-          <strong>Email is invalid.</strong> Please enter a valid email address (e.g., <strong>example@example.com</strong>).
+          <strong>Email is invalid.</strong> Please enter a valid email address
+          (e.g., <strong>example@example.com</strong>).
         </>
       );
     }
@@ -47,14 +49,18 @@ const Login = () => {
       isPasswordValid.status = false;
       isPasswordValid.passwordError = (
         <>
-          <strong>Password is required.</strong> Please enter a password with at least 8 characters, including a mix of letters, numbers, and special characters.
+          <strong>Password is required.</strong> Please enter a password with at
+          least 8 characters, including a mix of letters, numbers, and special
+          characters.
         </>
       );
     } else if (!validPassword.test(password)) {
       isPasswordValid.status = false;
       isPasswordValid.passwordError = (
         <>
-          <strong>Password is invalid.</strong> Please enter a password with at least 8 characters, including a mix of letters, numbers, and special characters.
+          <strong>Password is invalid.</strong> Please enter a password with at
+          least 8 characters, including a mix of letters, numbers, and special
+          characters.
         </>
       );
     }
@@ -76,6 +82,16 @@ const Login = () => {
     const token = "guest";
     localStorage.setItem("token", token);
     navigate("/donelist");
+  };
+
+  const handleUserLogin = () => {
+    setLoginView(true);
+    setRegistered(true);
+  };
+
+  const handleUserRegister = () => {
+    setLoginView(true);
+    setRegistered(false);
   };
 
   const handleLogin = async (e) => {
@@ -114,10 +130,11 @@ const Login = () => {
 
     if (emailIsValid.status && passwordIsValid.status) {
       try {
-        await axios.post(`http://localhost:${apiPort}/register/`, {
-          email: email,
-          password: password,
-        })
+        await axios
+          .post(`http://localhost:${apiPort}/register/`, {
+            email: email,
+            password: password,
+          })
           .then((res) => {
             localStorage.setItem("token", res.data.token);
             navigate("/donelist");
@@ -138,18 +155,6 @@ const Login = () => {
     }
   };
 
-  const handleEnter = () => {
-    const emailIsValid = validateEmail(email);
-
-    if (emailIsValid.status) {
-      setLoginView(true);
-    } else {
-      setEmailError(emailIsValid.emailError);
-      setRegistered(false);
-    }
-  };
-
-
   return (
     <>
       <div className="login">
@@ -167,7 +172,7 @@ const Login = () => {
           </div>
           <hr className="login__divider" />
           <div className="login__form-section">
-            {!loginView && (
+            {loginView ? (
               <>
                 <h3 className="login__email-title">Enter with email</h3>
                 <form className="login__form">
@@ -175,7 +180,11 @@ const Login = () => {
                     E-mail
                   </label>
                   <input
-                    className={emailError ? "login__input login__input--error" : "login__input"}
+                    className={
+                      emailError
+                        ? "login__input login__input--error"
+                        : "login__input"
+                    }
                     type="text"
                     name="Email"
                     id="email"
@@ -184,46 +193,23 @@ const Login = () => {
                     placeholder="Enter your email..."
                     required
                   />
-                  {emailError && <div className="login__error" role="alert">
-                    <span aria-hidden="true" className="login__error-icon">❌</span>
-                    {emailError}
-                  </div>}
-                </form>
-                <button
-                  className="login__guest-button"
-                  type="button"
-                  onClick={handleEnter}
-                >
-                  Enter
-                </button>
-              </>
-            )}
-            {loginView && (
-              <>
-                <h3 className="login__email-title">Enter with email</h3>
-                <form className="login__form">
-                  <label className="login__label" htmlFor="email">
-                    E-mail
-                  </label>
-                  <input
-                    className={emailError ? "login__input login__input--error" : "login__input"}
-                    type="text"
-                    name="Email"
-                    id="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    placeholder="Enter your email..."
-                    required
-                  />
-                  {emailError && <div className="login__error" role="alert">
-                    <span aria-hidden="true" className="login__error-icon">❌</span>
-                    {emailError}
-                  </div>}
+                  {emailError && (
+                    <div className="login__error" role="alert">
+                      <span aria-hidden="true" className="login__error-icon">
+                        ❌
+                      </span>
+                      {emailError}
+                    </div>
+                  )}
                   <label className="login__label" htmlFor="password">
                     Password
                     <div className="password-input-container">
                       <input
-                        className={passwordError ? "login__input login__input--error" : "login__input"}
+                        className={
+                          passwordError
+                            ? "login__input login__input--error"
+                            : "login__input"
+                        }
                         type={showPassword ? "text" : "password"}
                         name="Password"
                         id="password"
@@ -238,7 +224,9 @@ const Login = () => {
                         onClick={handleTogglePassword}
                         role="button"
                         tabIndex="0"
-                        aria-label={showPassword ? "Hide password" : "Show password"}
+                        aria-label={
+                          showPassword ? "Hide password" : "Show password"
+                        }
                         title={showPassword ? "Hide password" : "Show password"}
                       >
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -246,7 +234,9 @@ const Login = () => {
                     </div>
                     {passwordError && (
                       <div className="login__error" role="alert">
-                        <span aria-hidden="true" className="login__error-icon">❌</span>
+                        <span aria-hidden="true" className="login__error-icon">
+                          ❌
+                        </span>
                         {passwordError}
                       </div>
                     )}
@@ -270,8 +260,30 @@ const Login = () => {
                       </button>
                     </div>
                   )}
-                  {errorMessage && <p className="login__error">{errorMessage}</p>}
+                  {errorMessage && (
+                    <p className="login__error">{errorMessage}</p>
+                  )}
                 </form>
+              </>
+            ) : (
+              <>
+                <h3 className="login__email-title">Enter with email</h3>
+                <div className="login__buttons">
+                  <button
+                    className="login__guest-button"
+                    type="button"
+                    onClick={handleUserLogin}
+                  >
+                    Login
+                  </button>
+                  <button
+                    className="login__guest-button"
+                    type="button"
+                    onClick={handleUserRegister}
+                  >
+                    Register
+                  </button>
+                </div>{" "}
               </>
             )}
           </div>

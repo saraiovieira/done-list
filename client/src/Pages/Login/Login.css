@@ -57,7 +57,7 @@
 
 /* Divider Styles */
 .login__divider {
-  border-top: 1px solid #B7B7B7;
+  border-top: 1px solid #b7b7b7;
   width: 80%;
   margin: 0 auto;
 }
@@ -76,7 +76,7 @@
 
 /* Label Styles */
 .login__label {
-  color: #5B5B5B;
+  color: #5b5b5b;
   font-size: 14px;
   margin-bottom: 5px;
 }
@@ -87,18 +87,18 @@
   margin-bottom: 15px;
   padding: 8px;
   border-radius: 5px;
-  background-color: #F2F2F2;
-  border: solid 1px #B7B7B7;
+  background-color: #f2f2f2;
+  border: solid 1px #b7b7b7;
 }
 
 /* Input Error Styles */
 .login__input-error {
-  border: solid 1px #A52727;
+  border: solid 1px #a52727;
 }
 
 /* Error Message Styles */
 .login__error {
-  color: #A52727;
+  color: #a52727;
   margin-bottom: 10px;
 }
 
@@ -133,7 +133,7 @@
 .password-toggle-icon svg {
   width: 20px;
   height: auto;
-  fill: #666; 
+  fill: #666;
 }
 
 /* Button Container Styles */
@@ -142,6 +142,11 @@
 }
 
 /* Button Styles */
+.login__buttons {
+  display: flex;
+  gap: 13px;
+}
+
 .login__button {
   margin-bottom: 10px;
   background-color: #006212;
@@ -159,12 +164,13 @@
   align-items: center;
 }
 
-.login__button:hover, .login__guest-button:hover {
+.login__button:hover,
+.login__guest-button:hover {
   background-color: #022809;
 }
 
 /* Media Query for Larger Screens */
-@media (min-width: 961px)  {
+@media (min-width: 961px) {
   .login__form-section {
     justify-content: baseline;
     align-items: baseline;
@@ -177,7 +183,7 @@
   }
 
   .login__divider {
-    border-top: 1px solid #B7B7B7;
+    border-top: 1px solid #b7b7b7;
     width: unset;
     margin: 5em;
   }
