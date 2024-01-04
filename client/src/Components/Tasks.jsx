@@ -50,7 +50,7 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
                         <h2 className="tasks__title">No tasks done yet!</h2>
                         <p className="tasks__description">Complete a task to make progress.</p>
                     </div>
-                ) : (<h2 className="tasks__title">Congrats! You accomplished {taskCount} tasks</h2>)}
+                ) : (<h2 className="tasks__title"><span>&#127881;</span>Congrats! You accomplished {taskCount} {taskCount === 1 ? "task" : "tasks"}</h2>)}
                 <ul className="tasks__list">
                     {guest ? (tasks.map(({ title, id }) => (
                         <li
