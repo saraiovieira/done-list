@@ -16,9 +16,9 @@ const Welcome = () => {
     <div className="welcome">
       <article className="welcome__article">
       <div className="welcome__article-description">
-        <p className="welcome__paragraph--bold">
+        <h2 className="welcome__paragraph--bold">
           Log completed tasks and watch your achievements pile up
-        </p>
+        </h2>
         <p className="welcome__paragraph--middle">
           Your personal space to celebrate your accomplishments, track your progress, and boost your productivity.
         </p>
