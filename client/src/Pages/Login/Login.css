@@ -172,14 +172,20 @@
 /* Media Query for Larger Screens */
 @media (min-width: 961px) {
   .login__form-section {
-    justify-content: baseline;
-    align-items: baseline;
-    width: 20%;
+    width: 100%;
+  }
+
+  .login__form {
+    width: 50%;
+  }
+
+  .login__guest-button {
+    width: unset;
+    padding: 5px 55px;
   }
 
   .login__guest-section {
-    display: block;
-    width: auto;
+    width: 100%;
   }
 
   .login__divider {
