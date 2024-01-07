@@ -28,12 +28,10 @@
 
 /* Form Title Styles */
 .login__form-title {
-  width: 95%;
   text-align: center;
   font-weight: bold;
   color: #006212;
   font-size: 1.6em;
-  padding-top: 11px;
 }
 
 /* Guest Section Styles */
@@ -172,10 +170,18 @@
 /* Media Query for Larger Screens */
 @media (min-width: 961px) {
 
-.login {
-  justify-content: center;
-  height: 90vh;
-}
+  .login {
+    justify-content: center;
+    height: 90vh;
+  }
+
+  .login__form-title {
+    position: absolute;
+    top: 30%;
+    right: 0;
+    left: 0;
+  }
+
   .login__form-section {
     width: 100%;
   }
