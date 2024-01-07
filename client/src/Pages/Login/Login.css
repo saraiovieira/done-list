@@ -171,6 +171,11 @@
 
 /* Media Query for Larger Screens */
 @media (min-width: 961px) {
+
+.login {
+  justify-content: center;
+  height: 90vh;
+}
   .login__form-section {
     width: 100%;
   }
