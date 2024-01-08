@@ -13,7 +13,8 @@
 .login {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  height: 90vh;
   padding: 2.5em 1.5em 1.5em 1.5em;
 }
 
@@ -32,6 +33,10 @@
   font-weight: bold;
   color: #006212;
   font-size: 1.6em;
+  position: absolute;
+  top: 17%;
+  right: 0;
+  left: 0;
 }
 
 /* Guest Section Styles */
@@ -169,12 +174,6 @@
 
 /* Media Query for Larger Screens */
 @media (min-width: 961px) {
-
-  .login {
-    justify-content: center;
-    height: 90vh;
-  }
-
   .login__form-title {
     position: absolute;
     top: 30%;
