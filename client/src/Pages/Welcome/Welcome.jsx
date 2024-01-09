@@ -1,7 +1,6 @@
 import "./Welcome.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import doneImage from "../../../src/done-image.png";
 import { IoMdArrowRoundForward } from "react-icons/io";
 
 const Welcome = () => {
@@ -36,7 +35,7 @@ const Welcome = () => {
       <div className="welcome__img-container">
         <img
           className="welcome__img"
-          src={doneImage}
+          src="/done-image.png"
           alt="Woman who is happy to have finished a task and is sitting in front of a desk with her laptop open"
         />
       </div>
