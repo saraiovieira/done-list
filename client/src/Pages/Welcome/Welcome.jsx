@@ -2,8 +2,7 @@ import "./Welcome.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import doneImage from "../../../src/done-image.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { IoMdArrowRoundForward } from "react-icons/io";
 
 const Welcome = () => {
   let navigate = useNavigate();
@@ -29,7 +28,7 @@ const Welcome = () => {
             onClick={handleRedirect}
           >
             Start your journey to success today
-            <FontAwesomeIcon className="welcome__arrow" icon={faArrowRight} />
+            <IoMdArrowRoundForward className="welcome__arrow" />
           </button>
         </div>
       </article>

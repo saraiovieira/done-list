@@ -34,8 +34,8 @@
 }
 
 .done-header__logout-icon {
-    color: rgb(213, 18, 18);
-    border: 2px solid rgb(213, 18, 18);
+    font-size: 1.8em;
+    border: 2px solid #000;
     border-radius: 5px;
     background-color: #7bed8d;
     padding: 4px;

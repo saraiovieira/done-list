@@ -81,7 +81,7 @@ header,
 /* Button styles */
 .welcome__button {
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 0 auto;
   font-size: 0.9em;
   width: 83%;
