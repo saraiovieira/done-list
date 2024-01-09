@@ -88,7 +88,7 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
                         </li>
                     ))) : (tasks.map(({ _id, task }, i) => (
                         <li
-                            key={i}
+                            key={_id}
                             className="tasks__item"
                         >
                             {editedTask && editedTask._id === _id ? (

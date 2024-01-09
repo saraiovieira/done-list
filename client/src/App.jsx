@@ -12,10 +12,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={[<MainHeader />, <Welcome />]} />
-        <Route path="/login" element={[<MainHeader />, <Login />]} />
+        <Route path="/" element={[<MainHeader key="mainHeader" />, <Welcome  key="welcome" />]} />
+        <Route path="/login" element={[<MainHeader key="mainHeader" />, <Login key="login" />]} />
         <Route element={<PrivateRoute />}>
-          <Route path="/donelist" element={[<DoneHeader />, <DoneList />]} />
+          <Route path="/donelist" element={[<DoneHeader key="doneHeader" />, <DoneList key="doneList" />]} />
         </Route>
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>

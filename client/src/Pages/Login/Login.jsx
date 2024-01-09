@@ -70,7 +70,6 @@ const Login = () => {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
     setEmailError("");
-    setRegistered(false);
   };
 
   const handlePasswordChange = (event) => {
@@ -150,7 +149,6 @@ const Login = () => {
       }
     } else {
       setEmailError(emailIsValid.emailError);
-      setRegistered(false);
       setPasswordError(passwordIsValid.passwordError);
     }
   };
