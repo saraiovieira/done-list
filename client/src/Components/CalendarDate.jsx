@@ -11,7 +11,7 @@ const CalendarDate = ({ dateChanged }) => {
       dateChanged(selectedDate);
     } else {
       dateChanged(date.getTime());
-    }
+    }// eslint-disable-next-line
   }, [date]);
 
   return (

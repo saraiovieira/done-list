@@ -47,7 +47,7 @@ const Tasks = ({ task, setTask, createTask, tasks, updateTask, deleteTask, edite
             <div className="tasks_container">
                 {tasks.length === 0 ? (
                     <div className="tasks__empty-container">
-                        <h2 className="tasks__title">No tasks done yet!</h2>
+                        <h2 className="tasks__title">🌱 No tasks done yet!</h2>
                         <p className="tasks__description">Complete a task to make progress.</p>
                     </div>
                 ) : (<h2 className="tasks__title"><span>&#127881;</span>Congrats! You accomplished {taskCount} {taskCount === 1 ? "task" : "tasks"}</h2>)}
