@@ -7,7 +7,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   let navigate = useNavigate();
-  const apiPort = process.env.REACT_APP_API_PORT;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -102,7 +101,7 @@ const Login = () => {
     if (emailIsValid.status && passwordIsValid.status) {
       try {
         await axios
-          .post(`http://localhost:${apiPort}/login/`, {
+          .post(`${process.env.REACT_APP_API_ENDPOINT}/login/`, {
             email: email,
             password: password,
           })
@@ -130,7 +129,7 @@ const Login = () => {
     if (emailIsValid.status && passwordIsValid.status) {
       try {
         await axios
-          .post(`http://localhost:${apiPort}/register/`, {
+          .post(`${process.env.REACT_APP_API_ENDPOINT}/register/`, {
             email: email,
             password: password,
           })
