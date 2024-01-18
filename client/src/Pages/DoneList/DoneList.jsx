@@ -22,17 +22,18 @@ const DoneList = () => {
     }
   }, []);
 
-  const getAllTasksUser = async (date = Date.now()) => {
-    getAllTasksAPI(date).then((tasks) => {
+  const getAllTasksUser = async (targetDate = Date.now()) => {
+    try {
+      const tasks = await getAllTasksAPI(targetDate);
       setTasks(tasks);
-    });
+    } catch (error) {
+      console.error("Error retrieving tasks:", error);
+    }
   };
 
-  const getAllTasksGuest = (date = Date.now()) => {
-    const targetDate = date;
-    const savedTasks = localStorage.getItem("tasks");
-    const allTasks = JSON.parse(savedTasks) || [];
-    const tasksForDate = allTasks.filter((task) => task.date === targetDate);
+  const getAllTasksGuest = (targetDate = Date.now()) => {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const tasksForDate = savedTasks.filter((task) => task.date === targetDate);
     setTasks(tasksForDate);
   };
 
@@ -66,21 +67,22 @@ const DoneList = () => {
   const deleteTask = async (e, id) => {
     const token = localStorage.getItem("token");
     if (token === "guest") {
-      let deletedTasks = tasks.filter(({ id: i }) => id !== i);
+      const deletedTasks = tasks.filter((t) => t.id !== id);
       setTasks(deletedTasks);
       localStorage.setItem("tasks", JSON.stringify(deletedTasks));
     } else {
       try {
-        e.stopPropagation();
         await deleteTaskAPI(id);
-        setTasks(tasks.filter(({ _id: i }) => id !== i));
-      } catch (err) { }
+        setTasks(tasks.filter((t) => t._id !== id));
+      } catch (error) {
+        console.error("Error deleting task:", error);
+      }
     }
   };
 
   const updateTask = async (e, id) => {
-
     const token = localStorage.getItem("token");
+
     if (token === "guest") {
       if (editedTask) {
         setTasks((prevTasks) =>
@@ -102,7 +104,7 @@ const DoneList = () => {
     } else {
       try {
         e.stopPropagation();
-        const updatedTask = await updateTaskAPI(id,  editedTask.task );
+        const updatedTask = await updateTaskAPI(id, editedTask.task);
 
         setTasks((prevTasks) =>
           prevTasks.map((task) =>
@@ -117,34 +119,30 @@ const DoneList = () => {
     }
   };
 
-
-  const dateChanged = async (date) => {
+  const dateChanged = async (newDate) => {
     const token = localStorage.getItem("token");
     if (token === "guest") {
-      getAllTasksGuest(date);
-      setDate(date);
+      getAllTasksGuest(newDate);
     } else {
-      getAllTasksUser(date);
-      setDate(date);
+      getAllTasksUser(newDate);
     }
+    setDate(newDate);
   };
 
   return (
-    <>
-      <div className="done-list__container">
+    <div className="done-list__container">
       <Tasks
-          task={task}
-          setTask={setTask}
-          createTask={createTask}
-          tasks={tasks}
-          updateTask={updateTask}
-          deleteTask={deleteTask}
-          editedTask={editedTask}
-          setEditedTask={setEditedTask}
-        />
-        <CalendarDate dateChanged={dateChanged} />
-      </div>
-    </>
+        task={task}
+        setTask={setTask}
+        createTask={createTask}
+        tasks={tasks}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
+        editedTask={editedTask}
+        setEditedTask={setEditedTask}
+      />
+      <CalendarDate dateChanged={dateChanged} />
+    </div>
   );
 };
 

@@ -56,6 +56,8 @@
 /* Guest Button Styles */
 .login__guest-button {
   margin-bottom: 2.5em;
+  width: unset;
+  padding: 5px 55px;
 }
 
 /* Divider Styles */
@@ -176,7 +178,6 @@
 @media (min-width: 961px) {
   .login__form-title {
     position: absolute;
-    top: 30%;
     right: 0;
     left: 0;
   }
@@ -187,11 +188,6 @@
 
   .login__form {
     width: 50%;
-  }
-
-  .login__guest-button {
-    width: unset;
-    padding: 5px 55px;
   }
 
   .login__guest-section {

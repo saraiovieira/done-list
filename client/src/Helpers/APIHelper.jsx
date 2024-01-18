@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_PORT}/tasks/`;
+const API_URL = `http://localhost:${process.env.REACT_APP_API_ENDPOINT}/tasks/`;
 
 
 let AxiosInstance = axios.create({

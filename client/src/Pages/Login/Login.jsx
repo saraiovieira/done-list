@@ -101,7 +101,7 @@ const Login = () => {
     if (emailIsValid.status && passwordIsValid.status) {
       try {
         await axios
-          .post(`${process.env.REACT_APP_API_ENDPOINT}/login/`, {
+          .post(`http://localhost:${process.env.REACT_APP_API_ENDPOINT}/login/`, {
             email: email,
             password: password,
           })
@@ -129,7 +129,7 @@ const Login = () => {
     if (emailIsValid.status && passwordIsValid.status) {
       try {
         await axios
-          .post(`${process.env.REACT_APP_API_ENDPOINT}/register/`, {
+          .post(`http://localhost:${process.env.REACT_APP_API_ENDPOINT}/register/`, {
             email: email,
             password: password,
           })
