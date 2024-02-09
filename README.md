@@ -37,11 +37,11 @@ Responsive web application to log completed tasks and celebrate your accomplishm
 ### How to run the app on your computer
 
 1. Clone this repo to your computer.
-```bash
+```
   git clone https://saraiovieira/done-list.git
 ```
 2. Open a terminal and go the folder in which you cloned this repo.
 3. Go to the server folder or client folder and run the next steps on both folders.
-4. Run ```bash npm install``` to download and install all the packages in `package.json`
+4. Run ``` npm install``` to download and install all the packages in `package.json`
    to the `node_modules` directory.
-5. Run ```bash npm start``` to launch the dev server on localhost port.
+5. Run ``` npm start``` to launch the dev server on localhost port.
