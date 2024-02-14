@@ -9,8 +9,14 @@
   padding: 0;
 }
 
+header {
+  position: relative;
+  z-index: 999;
+}
+
 /* Login Section Styles */
 .login {
+  background-color: #7bed8d;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,9 +37,8 @@
 .login__form-title {
   text-align: center;
   font-weight: bold;
-  color: #006212;
+  color: #000;
   font-size: 1.6em;
-  position: absolute;
   top: 17%;
   right: 0;
   left: 0;
@@ -56,6 +61,11 @@
 /* Guest Button Styles */
 .login__guest-button {
   margin-bottom: 2.5em;
+  width: unset;
+  padding: 5px 55px;
+}
+
+.login__email-button {
   width: unset;
   padding: 5px 55px;
 }
@@ -176,10 +186,11 @@
 
 /* Media Query for Larger Screens */
 @media (min-width: 961px) {
-  .login__form-title {
-    position: absolute;
-    right: 0;
-    left: 0;
+
+  .login {
+    height: 92vh;
+    width: 55%;
+    justify-content: center;
   }
 
   .login__form-section {
@@ -202,6 +213,14 @@
 
   .login__choose-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
   }
+
+  .login__email-button {
+    margin-bottom: 2.5em;
+    width: unset;
+    padding: 5px 55px;
+  }
+  
 }

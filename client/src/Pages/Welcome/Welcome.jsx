@@ -27,7 +27,7 @@ const Welcome = () => {
             onClick={handleRedirect}
           >
             Start your journey to success today
-            <IoMdArrowRoundForward className="welcome__arrow" />
+            <IoMdArrowRoundForward className="welcome__arrow blink" />
           </button>
         </div>
       </article>

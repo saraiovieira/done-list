@@ -101,10 +101,13 @@ const Login = () => {
     if (emailIsValid.status && passwordIsValid.status) {
       try {
         await axios
-          .post(`http://localhost:${process.env.REACT_APP_API_ENDPOINT}/login/`, {
-            email: email,
-            password: password,
-          })
+          .post(
+            `http://localhost:${process.env.REACT_APP_API_ENDPOINT}/login/`,
+            {
+              email: email,
+              password: password,
+            }
+          )
           .then((res) => {
             const token = res.data.token;
             localStorage.setItem("token", token);
@@ -129,10 +132,13 @@ const Login = () => {
     if (emailIsValid.status && passwordIsValid.status) {
       try {
         await axios
-          .post(`http://localhost:${process.env.REACT_APP_API_ENDPOINT}/register/`, {
-            email: email,
-            password: password,
-          })
+          .post(
+            `http://localhost:${process.env.REACT_APP_API_ENDPOINT}/register/`,
+            {
+              email: email,
+              password: password,
+            }
+          )
           .then((res) => {
             localStorage.setItem("token", res.data.token);
             navigate("/donelist");
@@ -154,23 +160,19 @@ const Login = () => {
 
   return (
     <>
-      <div className="login">
-        <h2 className="login__form-title">Ready to start accomplishing? </h2>
-        <div className="login__choose-section">
-          <div className="login__guest-section">
-            <h3 className="login__guest-title">Enter as a guest</h3>
-            <button
-              className="login__guest-button"
-              type="button"
-              onClick={handleGuestLogin}
-            >
-              Enter
-            </button>
-          </div>
-          <hr className="login__divider" />
-          <div className="login__form-section">
-            {loginView ? (
-              <>
+      <div className="welcome">
+        <div className="welcome__img-container">
+          <img
+            className="welcome__img"
+            src="/done-image.png"
+            alt="Woman who is happy to have finished a task and is sitting in front of a desk with her laptop open"
+          />
+        </div>
+        <div className="login">
+          <h2 className="login__form-title">Ready to start accomplishing? </h2>
+          {loginView ? (
+            <>
+              <div className="login__form-section">
                 <h3 className="login__email-title">Enter with email</h3>
                 <form className="login__form">
                   <label className="login__label" htmlFor="email">
@@ -261,29 +263,44 @@ const Login = () => {
                     <p className="login__error">{errorMessage}</p>
                   )}
                 </form>
-              </>
-            ) : (
-              <>
-                <h3 className="login__email-title">Enter with email</h3>
-                <div className="login__buttons">
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="login__choose-section">
+                <div className="login__guest-section">
+                  <h3 className="login__guest-title">Enter as a guest</h3>
                   <button
                     className="login__guest-button"
                     type="button"
-                    onClick={handleUserLogin}
+                    onClick={handleGuestLogin}
                   >
-                    Login
+                    Enter
                   </button>
-                  <button
-                    className="login__guest-button"
-                    type="button"
-                    onClick={handleUserRegister}
-                  >
-                    Register
-                  </button>
-                </div>{" "}
-              </>
-            )}
-          </div>
+                </div>
+                <hr className="login__divider" />
+                <div className="login__form-section">
+                  <h3 className="login__email-title">Enter with email</h3>
+                  <div className="login__buttons">
+                    <button
+                      className="login__email-button"
+                      type="button"
+                      onClick={handleUserLogin}
+                    >
+                      Login
+                    </button>
+                    <button
+                      className="login__email-button"
+                      type="button"
+                      onClick={handleUserRegister}
+                    >
+                      Register
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
