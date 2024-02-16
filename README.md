@@ -41,6 +41,15 @@ DoneList is a web application with client side and the server side.
 <!-- Server -->
 
 ## Server
+- Implemented in Node.js and MongoDB
+
+### Server API
+- POST /register
+- POST /login
+- POST /tasks
+- GET /tasks
+- PUT /tasks/{id}
+- DELETE /tasks/{id}
 
 <!-- RUN LOCALLY-->
 
