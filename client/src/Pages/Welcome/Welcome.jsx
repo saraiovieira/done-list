@@ -2,6 +2,7 @@ import "./Welcome.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdArrowRoundForward } from "react-icons/io";
+import MainHeader from "../../Components/MainHeader";
 
 const Welcome = () => {
   let navigate = useNavigate();
@@ -12,7 +13,8 @@ const Welcome = () => {
 
   return (
     <div className="welcome">
-      <article className="welcome__article">
+      <div className="welcome__article">
+        <MainHeader />
         <div className="welcome__article-description">
           <h2 className="welcome__paragraph--bold">
             Log completed tasks and watch your achievements pile up
@@ -30,7 +32,7 @@ const Welcome = () => {
             <IoMdArrowRoundForward className="welcome__arrow blink" />
           </button>
         </div>
-      </article>
+      </div>
 
       <div className="welcome__img-container">
         <img

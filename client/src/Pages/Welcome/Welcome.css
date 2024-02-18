@@ -38,6 +38,7 @@ header,
   display: flex;
   align-items: center;
   padding: 0.5em;
+  align-self: flex-start;
 }
 
 .main-header__logo {
@@ -63,6 +64,7 @@ header,
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-top: 90px;
 }
 
 .welcome__paragraph--bold {
@@ -116,10 +118,9 @@ header,
 .welcome__img-container {
   display: flex;
   justify-content: center;
-  margin-top: -105px;
 }
 
-.welcome__img-container img {
+.welcome__img {
   width: 80%;
 }
 
@@ -131,7 +132,10 @@ header,
 
   .welcome__article {
     height: 60vh;
-    justify-content: center;
+  }
+
+  .welcome__article-description {
+    margin-top: 190px;
   }
 
   .welcome__bold-paragraph {
@@ -149,10 +153,9 @@ header,
   .welcome__img-container {
     display: flex;
     justify-content: center;
-    margin-top: -157px;
   }
 
-  .welcome__img-container img {
+  .welcome__img{
     width: 52%;
   }
 }
@@ -163,12 +166,12 @@ header,
   }
 
   .welcome__article {
-    height: 92vh;
+    height: 100vh;
     width: 55%;
-    justify-content: center;
   }
 
   .welcome__article-description {
+    margin-top: 180px;
     width: 70%;
   }
 
@@ -190,8 +193,7 @@ header,
     background-color: white;
   }
 
-  .welcome__img-container img {
-    height: 50%;
+  .welcome__img {
     width: 80%;
   }
 }

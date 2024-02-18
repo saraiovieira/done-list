@@ -4,6 +4,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { validEmail, validPassword } from "../../Validation/Validation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import MainHeader from "../../Components/MainHeader";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -160,13 +161,16 @@ const Login = () => {
 
   return (
     <>
-      <div className="welcome">
-        <div className="welcome__img-container">
-          <img
-            className="welcome__img"
-            src="/done-image.png"
-            alt="Woman who is happy to have finished a task and is sitting in front of a desk with her laptop open"
-          />
+      <div className="login__container">
+        <div  className="login__img-section">
+          <MainHeader />
+          <div className="login__img-container">
+            <img
+              className="login__img"
+              src="/done-image.png"
+              alt="Woman who is happy to have finished a task and is sitting in front of a desk with her laptop open"
+            />
+          </div>
         </div>
         <div className="login">
           <h2 className="login__form-title">Ready to start accomplishing? </h2>

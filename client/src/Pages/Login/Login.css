@@ -19,9 +19,18 @@ header {
   background-color: #7bed8d;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 90vh;
   padding: 2.5em 1.5em 1.5em 1.5em;
+}
+
+/* Image container styles */
+.login__img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login__img {
+  width: 80%;
 }
 
 /* Form Section Styles */
@@ -39,9 +48,7 @@ header {
   font-weight: bold;
   color: #000;
   font-size: 1.6em;
-  top: 17%;
-  right: 0;
-  left: 0;
+  margin-bottom: 40%;
 }
 
 /* Guest Section Styles */
@@ -184,13 +191,42 @@ header {
   background-color: #022809;
 }
 
+/* Media queries for responsiveness */
+
+@media (min-width: 641px) {
+  .login__img-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .login__img{
+    width: 52%;
+  }
+}
+
 /* Media Query for Larger Screens */
 @media (min-width: 961px) {
+  .login__container {
+    display: flex;
+  }
+
+  .login__img-container {
+    margin-top: 100px;
+    align-items: center;
+    background-color: white;
+  }
+
+  .login__img {
+    width: 80%;
+  }
 
   .login {
-    height: 92vh;
+    height: 100vh;
     width: 55%;
-    justify-content: center;
+  }
+
+  .login__form-title {
+    margin-bottom: 27%;
   }
 
   .login__form-section {
